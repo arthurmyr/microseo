@@ -6,7 +6,8 @@ var express = require('express'),
 
 module.exports = function(app){
     var server = app.drivers.express.server,
-        mysql = app.drivers.mysql;
+        mysql = app.drivers.mysql,
+        templateModel = path.resolve('views/templates/model.ejs');
 
     ////////////////
     // Middleware //
@@ -25,21 +26,51 @@ module.exports = function(app){
     server.set('view engine', 'ejs');
 
     
-    /////////////////
-    // Site Routes //
-    /////////////////
+    ////////////////////
+    // Website Routes //
+    ////////////////////
         
+    // Static Routes
     server
     .get('/', function(req, res){
-        res.render(path.resolve('views/templates/model.ejs'), {
+        res.render(templateModel, {
             page: 'home'
         });
     })
-    .get('/login', function(req, res) {
-        res.render(path.resolve('views/templates/model.ejs'), {
-           page: 'login' 
+    .get('/features', function(req, res) {
+        res.render(templateModel, {
+           page: 'features'
         });
     })
+    .get('/pricing', function(req, res) {
+        res.render(templateModel, {
+           page: 'pricing'
+        });
+    })
+    .get('/about', function(req, res) {
+        res.render(templateModel, {
+           page: 'about'
+        });
+    })
+    .get('/contact', function(req, res) {
+        res.render(templateModel, {
+           page: 'contact'
+        });
+    })
+    .get('/signup', function(req, res) {
+        res.render(templateModel, {
+           page: 'signup'
+        });
+    })
+    .post('/signup', function(req, res) {
+        
+    })
+    .get('/login', function(req, res) {
+        res.render(templateModel, {
+           page: 'login'
+        });
+    })
+    // Dynamic Routes
     .post('/login', function(req, res) {
         app.controllers.security.auth(req.body.email, req.body.password, function(check, user) {
             if(!check) {
@@ -48,7 +79,7 @@ module.exports = function(app){
             
             req.session.user = user.id;
             req.session.token = user.token;
-            res.status(200).redirect('/dashboard');
+            res.redirect('/dashboard');
         });
     })
     .post('/logout', function(req, res) {
@@ -56,8 +87,78 @@ module.exports = function(app){
         return res.redirect('/');
     })
     .get('/dashboard', function(req, res) {
-        res.render(path.resolve('views/templates/model.ejs'), {
+        if(!req.session.token || !req.session.user) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        var grant = app.controllers.security.grant(req.session.user, req.session.token);
+        if(!grant) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        
+        res.render(templateModel, {
            page: 'dashboard'
+        });
+    })
+    .get('/audit', function(req, res) {
+        if(!req.session.token || !req.session.user) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        var grant = app.controllers.security.grant(req.session.user, req.session.token);
+        if(!grant) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        
+        res.render(templateModel, {
+           page: 'audit'
+        });
+    })
+    .get('/competition', function(req, res) {
+        if(!req.session.token || !req.session.user) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        var grant = app.controllers.security.grant(req.session.user, req.session.token);
+        if(!grant) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        
+        res.render(templateModel, {
+           page: 'competition'
+        });
+    })
+    .get('/history', function(req, res) {
+        if(!req.session.token || !req.session.user) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        var grant = app.controllers.security.grant(req.session.user, req.session.token);
+        if(!grant) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        
+        res.render(templateModel, {
+           page: 'history'
+        });
+    })
+    .get('/', function(req, res) {
+        if(!req.session.token || !req.session.user) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        var grant = app.controllers.security.grant(req.session.user, req.session.token);
+        if(!grant) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        
+        res.render(templateModel, {
+           page: 'comparator'
         });
     })
     .get('/profile', function(req, res) {
@@ -76,12 +177,11 @@ module.exports = function(app){
             id: req.session.user
         });
         user.read(function(err, rows) {
-            res.render(path.resolve('views/templates/model.ejs'), {
+            res.render(templateModel, {
                 page: 'profile',
                 user: rows
             });
-        })
-        
+        }) 
     });
   
     
@@ -214,6 +314,7 @@ module.exports = function(app){
     // Error Routes //
     //////////////////
     
+    // 404
     server
     .use(function(req, res){
         res.redirect('/');

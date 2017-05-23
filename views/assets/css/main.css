@@ -65,24 +65,24 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 @font-face {
   font-family: 'titillium web';
-  src: url("fonts/titilliumweb-regular.woff2") format("woff2"), url("fonts/titilliumweb-regular.woff") format("woff"), url("fonts/titilliumweb-regular.ttf") format("truetype");
+  src: url("/fonts/titilliumweb-regular.woff2") format("woff2"), url("/fonts/titilliumweb-regular.woff") format("woff"), url("/fonts/titilliumweb-regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'titillium web';
-  src: url("fonts/titilliumweb-semibold.woff2") format("woff2"), url("fonts/titilliumweb-semibold.woff") format("woff"), url("fonts/titilliumweb-semibold.ttf") format("ttf");
+  src: url("/fonts/titilliumweb-semibold.woff2") format("woff2"), url("/fonts/titilliumweb-semibold.woff") format("woff"), url("/fonts/titilliumweb-semibold.ttf") format("ttf");
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: 'opensans';
-  src: url("./opensans/opensans-light.woff2") format("woff2"), url("./opensans/opensans-light.woff") format("woff"), url("./opensans/opensans-light.ttf") format("truetype");
+  src: url("/fonts/opensans-light.woff2") format("woff2"), url("/fonts/opensans-light.woff") format("woff"), url("/fonts/opensans-light.ttf") format("truetype");
   font-weight: 300;
 }
 @font-face {
   font-family: 'opensans';
-  src: url("./opensans/opensans-regular.woff2") format("woff2"), url("./opensans/opensans-regular.woff") format("woff"), url("./opensans/opensans-regular.ttf") format("truetype");
+  src: url("/fonts/opensans-regular.woff2") format("woff2"), url("/fonts/opensans-regular.woff") format("woff"), url("/fonts/opensans-regular.ttf") format("truetype");
   font-weight: 400;
 }
 /* line 1, ../sass/common/_theme.scss */
@@ -117,6 +117,14 @@ body > header {
   background-color: #0B114F;
 }
 /* line 4, ../sass/components/_header.scss */
-body > header nav a {
+body > header nav ul {
+  width: 400px;
+}
+/* line 6, ../sass/components/_header.scss */
+body > header nav ul li {
+  display: inline-block;
+}
+/* line 8, ../sass/components/_header.scss */
+body > header nav ul li a {
   color: white;
 }
