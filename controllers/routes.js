@@ -146,21 +146,6 @@ module.exports = function(app){
            page: 'history'
         });
     })
-    .get('/', function(req, res) {
-        if(!req.session.token || !req.session.user) {
-            req.session.destroy();
-            return res.redirect('/login');
-        }
-        var grant = app.controllers.security.grant(req.session.user, req.session.token);
-        if(!grant) {
-            req.session.destroy();
-            return res.redirect('/login');
-        }
-        
-        res.render(templateModel, {
-           page: 'comparator'
-        });
-    })
     .get('/profile', function(req, res) {
         if(!req.session.token || !req.session.user) {
             req.session.destroy();
