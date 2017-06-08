@@ -6,7 +6,8 @@ var express = require('express'),
 module.exports = function(app) {
     var server = app.drivers.express.server,
         mysql = app.drivers.mysql,
-        templateModel = path.resolve('views/templates/model.ejs');
+        templateModel = path.resolve('views/templates/model.ejs'),
+        crawler = app.controllers.crawler;
     
     server
     .get('/api/user', function(req, res) {
@@ -16,18 +17,18 @@ module.exports = function(app) {
         user.read(function(err, rows, fields) {
             if(err) {
                 return res.status(500).send({
-                    status: 'Error',
+                    status: 'error',
                     error: err
                 }); 
             }
             else if (!rows) {
                 return res.status(404).send({
-                    status: 'Error',
-                    error: 'Not Found'
+                    status: 'error',
+                    error: 'not found'
                 });
             }
             res.status(200).send({
-                status: 'Sucess',
+                status: 'sucess',
                 data: rows[0]
             });
         });
@@ -42,13 +43,13 @@ module.exports = function(app) {
         user.create(function(err, rows, fields) {
             if(err) {
                 return res.status(500).send({
-                    status: 'Error',
+                    status: 'error',
                     error: err
                 }); 
             }
             res.status(201).send({
-                status: 'Sucess',
-                message: 'Created'
+                status: 'sucess',
+                message: 'created'
             });
         });
     })
@@ -56,8 +57,8 @@ module.exports = function(app) {
         // Compose the data object and filter variables
         if(!req.body.id || req.body.length === 1) {
             return res.status(422).send({
-                status: 'Error',
-                error: 'Bad Request'
+                status: 'error',
+                error: 'bad request'
             });
         }
         for (prop in req.body) {
@@ -74,8 +75,8 @@ module.exports = function(app) {
              && prop !== 'adress'
              && prop !== 'additional_adress') {
                 return res.status(422).send({
-                    status: 'Error',
-                    error: 'Bad Request'
+                    status: 'error',
+                    error: 'bad request'
                 });
             }
         }
@@ -85,13 +86,13 @@ module.exports = function(app) {
         user.update(function(err, rows, fields) {
             if(err) {
                 return res.status(500).send({
-                    status: 'Error',
+                    status: 'error',
                     error: err
                 });
             }
             res.status(200).send({
-                status: 'Sucess',
-                message: 'Updated'
+                status: 'sucess',
+                message: 'updated'
             });
         });
     })
@@ -102,13 +103,13 @@ module.exports = function(app) {
         user.delete(function(err, rows, fields) {
             if(err) {
                 return res.status(500).send({
-                    status: 'Error',
+                    status: 'error',
                     error: err
                 });
             }
             res.status(200).send({
-                status: 'Sucess',
-                message: 'Deleted'
+                status: 'sucess',
+                message: 'deleted'
             });
         });
     })
@@ -116,15 +117,29 @@ module.exports = function(app) {
         app.controllers.security.auth(req.body.email, req.body.password, function(check, user) {
             if(!check) {
                 return res.status(403).send({
-                    status: 'Error',
-                    error: 'Bad Password'
+                    status: 'error',
+                    error: 'bad password'
                 });
             }
             res.status(200).send({
-                status: 'Sucess',
+                status: 'sucess',
                 user: user
             });
         });
+    })
+    .get('/api/audit', function(req, res) {
+        
+    })
+    .post('/api/audit', function(req, res) {
+        
+    })
+    .put('/api/audit', function(req, res) {
+        
+    })
+    .delete('/api/audit', function(req, res) {
+        
+    })
+    .get('/api/analyze', function(req, res) {
         
     });
 }

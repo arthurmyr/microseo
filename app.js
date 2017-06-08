@@ -24,15 +24,14 @@ app.models.audit = require('./models/audit');
 
 app.controllers = {}
 app.controllers.security = require('./controllers/security')(app);
-app.controllers.crawler = require('./controllers/crawler')(app);
+app.controllers.crawler = require('./controllers/crawler');
 
-app.controllers.analysis = {};
-app.controllers.analysis.backlink = require('./controllers/analysis/backlink')(app);
-app.controllers.analysis.inlink = require('./controllers/analysis/inlink')(app);
-app.controllers.analysis.http = require('./controllers/analysis/http')(app);
-app.controllers.analysis.responsive = require('./controllers/analysis/responsive')(app);
-app.controllers.analysis.semantic = require('./controllers/analysis/semantic')(app);
-app.controllers.analysis.speed = require('./controllers/analysis/speed')(app);
+app.controllers.analyzers = {};
+app.controllers.analyzers.html = require('./controllers/analyzers/html');
+app.controllers.analyzers.responsive = require('./controllers/analyzers/responsive');
+app.controllers.analyzers.speed = require('./controllers/analyzers/speed');
+app.controllers.analyzers.http = require('./controllers/analyzers/http');
+app.controllers.analyze = require('./controllers/analyze')(app);
 
 app.controllers.middleware = require('./controllers/middleware')(app);
 

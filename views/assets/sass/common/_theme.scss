@@ -12,8 +12,19 @@ h2 {
 p, span, a {
     font-family: $opensans;
     font-weight: 300;
+    font-size: 12px;
 }
 a {
     text-decoration: none;
     color: black;
 }
+
+//.logo {
+//    display: inline-block;
+//    width: 40px;
+//    height: 44px;
+//    background-image: url('/img/logo-blue.svg');
+//    background-repeat: no-repeat;
+//    background-position: center center;
+//    background-size: 100%;
+//}

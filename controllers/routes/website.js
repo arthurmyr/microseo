@@ -6,6 +6,8 @@ var express = require('express'),
 module.exports = function(app) {
     var server = app.drivers.express.server,
         mysql = app.drivers.mysql,
+        security = app.controllers.security,
+        analyze = app.controllers.analyze,
         templateModel = path.resolve('views/templates/model.ejs');
     
     ///////////////////
@@ -15,40 +17,51 @@ module.exports = function(app) {
     server
     .get('/', function(req, res){
         res.render(templateModel, {
-            page: 'home'
+            page: 'home',
+            pageTitle: 'MicroSeo',
+            logged: false
         });
     })
     .get('/features', function(req, res) {
         res.render(templateModel, {
-           page: 'features'
+            page: 'features',
+            pageTitle: 'Features | MicroSeo',
+            logged: false
         });
     })
     .get('/pricing', function(req, res) {
         res.render(templateModel, {
-           page: 'pricing'
+            page: 'pricing',
+            pageTitle: 'Pricing | MicroSeo',
+            logged: false
         });
     })
     .get('/about', function(req, res) {
         res.render(templateModel, {
-           page: 'about'
+            page: 'about',
+            pageTitle: 'About | MicroSeo',
+            logged: false
         });
     })
     .get('/contact', function(req, res) {
         res.render(templateModel, {
-           page: 'contact'
+            page: 'contact',
+            pageTitle: 'Contact | MicroSeo',
+            logged: false
         });
     })
     .get('/signup', function(req, res) {
         res.render(templateModel, {
-           page: 'signup'
+            page: 'signup',
+            pageTitle: 'Signup | MicroSeo',
+            logged: false
         });
-    })
-    .post('/signup', function(req, res) {
-        
     })
     .get('/login', function(req, res) {
         res.render(templateModel, {
-           page: 'login'
+            page: 'login',
+            pageTitle: 'Login | MicroSeo',
+            logged: false
         });
     })
     
@@ -58,7 +71,7 @@ module.exports = function(app) {
     ////////////////////
     
     .post('/login', function(req, res) {
-        app.controllers.security.auth(req.body.email, req.body.password, function(check, user) {
+        security.auth(req.body.email, req.body.password, function(check, user) {
             if(!check) {
                 return res.status(403).redirect('/login?error=badpassword');
             }
@@ -72,73 +85,13 @@ module.exports = function(app) {
         req.session.destroy();
         return res.redirect('/');
     })
-    .get('/dashboard', function(req, res) {
-        if(!req.session.token || !req.session.user) {
-            req.session.destroy();
-            return res.redirect('/login');
-        }
-        var grant = app.controllers.security.grant(req.session.user, req.session.token);
-        if(!grant) {
-            req.session.destroy();
-            return res.redirect('/login');
-        }
-        
-        res.render(templateModel, {
-           page: 'dashboard'
-        });
-    })
-    .get('/audit', function(req, res) {
-        if(!req.session.token || !req.session.user) {
-            req.session.destroy();
-            return res.redirect('/login');
-        }
-        var grant = app.controllers.security.grant(req.session.user, req.session.token);
-        if(!grant) {
-            req.session.destroy();
-            return res.redirect('/login');
-        }
-        
-        res.render(templateModel, {
-           page: 'audit'
-        });
-    })
-    .get('/competition', function(req, res) {
-        if(!req.session.token || !req.session.user) {
-            req.session.destroy();
-            return res.redirect('/login');
-        }
-        var grant = app.controllers.security.grant(req.session.user, req.session.token);
-        if(!grant) {
-            req.session.destroy();
-            return res.redirect('/login');
-        }
-        
-        res.render(templateModel, {
-           page: 'competition'
-        });
-    })
-    .get('/history', function(req, res) {
-        if(!req.session.token || !req.session.user) {
-            req.session.destroy();
-            return res.redirect('/login');
-        }
-        var grant = app.controllers.security.grant(req.session.user, req.session.token);
-        if(!grant) {
-            req.session.destroy();
-            return res.redirect('/login');
-        }
-        
-        res.render(templateModel, {
-           page: 'history'
-        });
-    })
     .get('/profile', function(req, res) {
         if(!req.session.token || !req.session.user) {
             req.session.destroy();
             return res.redirect('/login');
         }
         
-        var grant = app.controllers.security.grant(req.session.user, req.session.token);
+        var grant = security.grant(req.session.user, req.session.token);
         if(!grant) {
             req.session.destroy();
             return res.redirect('/login');
@@ -150,8 +103,88 @@ module.exports = function(app) {
         user.read(function(err, rows) {
             res.render(templateModel, {
                 page: 'profile',
+                pageTitle: 'Profile | MicroSeo',
+                h2: 'Profile',
+                logged: true,
                 user: rows
             });
         }) 
+    })
+    .get('/dashboard', function(req, res) {
+        if(!req.session.token || !req.session.user) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        var grant = security.grant(req.session.user, req.session.token);
+        if(!grant) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        
+        res.render(templateModel, {
+            page: 'dashboard',
+            pageTitle: 'Dashboard | MicroSeo',
+            h2: 'Dashboard',
+            logged: true
+        });
+    })
+    .get('/audit', function(req, res) {
+        if(!req.session.token || !req.session.user) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        var grant = security.grant(req.session.user, req.session.token);
+        if(!grant) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        
+        res.render(templateModel, {
+            page: 'audit',
+            pageTitle: 'Audit | MicroSeo',
+            h2: 'Audit',
+            logged: true
+        });
+    })
+    .post('/audit', function(req, res) {
+        //        analyze.init('https://fr.wikipedia.org');
+        //        analyze.init('https://www.lequipe.fr/Football');
+        analyze.init(req.url);
+    })
+    .get('/comparator', function(req, res) {
+        if(!req.session.token || !req.session.user) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        var grant = security.grant(req.session.user, req.session.token);
+        if(!grant) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        
+        res.render(templateModel, {
+            page: 'comparator',
+            pageTitle: 'Comparator | MicroSeo',
+            h2: 'Comparator',
+            logged: true
+        });
+    })
+    .get('/history', function(req, res) {
+        if(!req.session.token || !req.session.user) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        var grant = security.grant(req.session.user, req.session.token);
+        if(!grant) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        
+        res.render(templateModel, {
+            page: 'history',
+            pageTitle: 'History | MicroSeo',
+            h2: 'History',
+            logged: true
+        });
     });
 }

@@ -1,12 +1,14 @@
 <html>
-  <% include partials/head.ejs %>
-<body>
-  <% include partials/header.ejs %>
-
-  <%- include(page) %>
-
-  <% include partials/footer.ejs %>
+    <% include partials/head.ejs %>
+    <body>
+        <% include partials/header.ejs %>
   
-  <% include partials/scripts.ejs %>
-</body>
+        <% include partials/sidebar.ejs %>
+
+        <%- include(page) %>
+
+        <% include partials/footer.ejs %>
+  
+        <% include partials/scripts.ejs %>
+    </body>
 </html>

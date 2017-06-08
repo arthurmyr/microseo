@@ -1,12 +1,25 @@
-<header>
-<!--Logo-->
-    <nav>
-        <ul>
-            <li><h3><a href="/features">Features</a></h3></li>
-            <li><h3><a href="/pricing">Pricing</a></h3></li>
-            <li><h3><a href="/profile">Profile</a></h3></li>
-            <li><h3><a href="/about">About</a></h3></li>
-            <li><h3><a href="/contact">Contact</a></h3></li>
-        </ul>
-    </nav>
-</header>
+<% if(!logged) { %>
+   
+    <header class="offline">
+        <a href="/" title=""><img class="logo" src="/img/logo-blue.svg" alt="Blue MicroSeo's logo"></a>
+        <nav>
+            <ul class="basic">
+                <li><a href="/features">Features</a></li>
+                <li><a href="/pricing">Pricing</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+            <ul class="auth">
+                <li><a href="/login">Login</a></li>
+                <li><a href="/signup">Signup</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+<% } else { %>
+   
+    <header class="online" style="text-align:center;">
+        <h2><%= h2 %></h2>
+    </header>
+    
+<% } %>

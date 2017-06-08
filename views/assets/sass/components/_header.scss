@@ -1,15 +1,40 @@
-body > header {
+body > header.offline {
     background-color: #363636;
     height: 50px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    .logo {
+        float: left;
+        width: 40px;
+        display: inline-block;
+    }
     nav {
-        ul {
-            width: 400px;
+        display: inline-block;
+        height: 100%;
+        float: right;
+        ul.basic, ul.auth {
+            display: inline-block;
+            height: 100%;
             li {
                 display: inline-block;
+                height: 100%;
+                margin-left: 10px;
                 a {
+                    display: inline-block;
                     color: white;
+                    height: 100%;
+                    line-height: 50px;
+                    font-size: $md-title;
                 }
             }
         }
+        ul.auth {
+            margin-left: 20px;
+        }
     }
+}
+
+body > header.online {
+    
 }

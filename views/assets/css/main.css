@@ -4894,28 +4894,70 @@ h2 {
 p, span, a {
   font-family: "opensans", sans-serif;
   font-weight: 300;
+  font-size: 12px;
 }
 
-/* line 16, ../sass/common/_theme.scss */
+/* line 17, ../sass/common/_theme.scss */
 a {
   text-decoration: none;
   color: black;
 }
 
 /* line 1, ../sass/components/_header.scss */
-body > header {
+body > header.offline {
   background-color: #363636;
   height: 50px;
-}
-/* line 5, ../sass/components/_header.scss */
-body > header nav ul {
-  width: 400px;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 /* line 7, ../sass/components/_header.scss */
-body > header nav ul li {
+body > header.offline .logo {
+  float: left;
+  width: 40px;
   display: inline-block;
 }
-/* line 9, ../sass/components/_header.scss */
-body > header nav ul li a {
+/* line 12, ../sass/components/_header.scss */
+body > header.offline nav {
+  display: inline-block;
+  height: 100%;
+  float: right;
+}
+/* line 16, ../sass/components/_header.scss */
+body > header.offline nav ul.basic, body > header.offline nav ul.auth {
+  display: inline-block;
+  height: 100%;
+}
+/* line 19, ../sass/components/_header.scss */
+body > header.offline nav ul.basic li, body > header.offline nav ul.auth li {
+  display: inline-block;
+  height: 100%;
+  margin-left: 10px;
+}
+/* line 23, ../sass/components/_header.scss */
+body > header.offline nav ul.basic li a, body > header.offline nav ul.auth li a {
+  display: inline-block;
   color: white;
+  height: 100%;
+  line-height: 50px;
+  font-size: 16px;
+}
+/* line 32, ../sass/components/_header.scss */
+body > header.offline nav ul.auth {
+  margin-left: 20px;
+}
+
+/* line 1, ../sass/components/_sidebar.scss */
+body > aside {
+  width: 50px;
+  background: blue;
+}
+
+/* line 1, ../sass/components/_footer.scss */
+body > footer {
+  height: 40px;
+  line-height: 40px;
+  background-color: #363636;
+  color: white;
+  text-align: center;
 }
