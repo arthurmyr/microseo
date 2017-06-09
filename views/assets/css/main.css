@@ -4884,20 +4884,23 @@ html, body {
 }
 
 /* line 7, ../sass/common/_theme.scss */
-h2 {
+h1 {
   font-family: "titillium web", sans-serif;
   font-weight: 400;
-  font-size: 30px;
+  font-size: 25px;
+  color: #00adef;
+  display: inline-block;
+  line-height: 50px;
 }
 
-/* line 12, ../sass/common/_theme.scss */
+/* line 15, ../sass/common/_theme.scss */
 p, span, a {
   font-family: "opensans", sans-serif;
   font-weight: 300;
   font-size: 12px;
 }
 
-/* line 17, ../sass/common/_theme.scss */
+/* line 20, ../sass/common/_theme.scss */
 a {
   text-decoration: none;
   color: black;
@@ -4912,29 +4915,40 @@ body > header.offline {
   padding-right: 10px;
 }
 /* line 7, ../sass/components/_header.scss */
-body > header.offline .logo {
+body > header.offline a {
+  display: block;
   float: left;
-  width: 40px;
+}
+/* line 10, ../sass/components/_header.scss */
+body > header.offline a .logo {
+  float: left;
+  width: 35px;
+  margin-top: 5px;
+  margin-right: 15px;
   display: inline-block;
 }
-/* line 12, ../sass/components/_header.scss */
+/* line 17, ../sass/components/_header.scss */
+body > header.offline a h1 {
+  float: left;
+}
+/* line 21, ../sass/components/_header.scss */
 body > header.offline nav {
   display: inline-block;
   height: 100%;
   float: right;
 }
-/* line 16, ../sass/components/_header.scss */
+/* line 25, ../sass/components/_header.scss */
 body > header.offline nav ul.basic, body > header.offline nav ul.auth {
   display: inline-block;
   height: 100%;
 }
-/* line 19, ../sass/components/_header.scss */
+/* line 28, ../sass/components/_header.scss */
 body > header.offline nav ul.basic li, body > header.offline nav ul.auth li {
   display: inline-block;
   height: 100%;
   margin-left: 10px;
 }
-/* line 23, ../sass/components/_header.scss */
+/* line 32, ../sass/components/_header.scss */
 body > header.offline nav ul.basic li a, body > header.offline nav ul.auth li a {
   display: inline-block;
   color: white;
@@ -4942,7 +4956,7 @@ body > header.offline nav ul.basic li a, body > header.offline nav ul.auth li a 
   line-height: 50px;
   font-size: 16px;
 }
-/* line 32, ../sass/components/_header.scss */
+/* line 41, ../sass/components/_header.scss */
 body > header.offline nav ul.auth {
   margin-left: 20px;
 }

@@ -4,10 +4,13 @@ html, body {
     min-width: 100%;
     min-height: 100%;
 }
-h2 {
+h1 {
     font-family: $titillium;
     font-weight: 400;
-    font-size: 30px
+    font-size: 25px;
+    color: $blue;
+    display: inline-block;
+    line-height: $header-height;
 }
 p, span, a {
     font-family: $opensans;
