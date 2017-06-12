@@ -3,14 +3,22 @@ html, body {
     height: 100%;
     min-width: 100%;
     min-height: 100%;
+    position: relative;
 }
 h1 {
     font-family: $titillium;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 25px;
     color: $blue;
     display: inline-block;
     line-height: $header-height;
+}
+h2 {
+    font-family: $titillium;
+    font-weight: 400;
+    font-size: 23px;
+    text-align: center;
+    padding-bottom: 20px;
 }
 p, span, a {
     font-family: $opensans;
@@ -21,13 +29,7 @@ a {
     text-decoration: none;
     color: black;
 }
-
-//.logo {
-//    display: inline-block;
-//    width: 40px;
-//    height: 44px;
-//    background-image: url('/img/logo-blue.svg');
-//    background-repeat: no-repeat;
-//    background-position: center center;
-//    background-size: 100%;
-//}
+body > main {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

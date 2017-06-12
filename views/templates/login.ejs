@@ -1,15 +1,23 @@
-<h2>Login</h2>
+<main>
+    <h2>Login</h2>
 
-<form action="/login" method="post">
-    <label>
-        Email:
-        <input type="text" name="email">
-    </label>
-       
-    <label>
-        Password:
-        <input type="text" name="password">
-    </label>
-    
-    <input type="submit">
-</form>
+    <form id="login_form" action="/login" method="post">
+        <div>  
+            <label for="login-email">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+            </label>
+            <input type="text" name="email" placeholder="Email" id="login-email">
+        </div>
+        
+        <div> 
+            <label for="login-password">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+            </label>
+            <input type="password" name="password" placeholder="Password" id="login-password">
+        </div>
+        
+        <a href="/signup" title=""><p>Don't have an account ? Signup</p></a>
+        
+        <input class="sm-btn" type="submit">
+    </form>
+</main>

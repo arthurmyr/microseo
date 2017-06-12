@@ -1,0 +1,82 @@
+form {
+    width: 60%;
+    margin: auto;
+    margin-top: 10px;
+    > div {
+        border: 1px solid $form-border-color;
+        border-radius: $form-radius;
+        margin-bottom: 20px;
+        height: $input-height;
+        overflow: auto;
+        label {
+            display: inline-block;
+            background-color: $label-color;
+            width: $label-width;
+            height: 100%;
+            text-align: center;
+            border-top-left-radius: $form-radius;
+            border-bottom-left-radius: $form-radius;
+            i {
+                line-height: $input-height !important;
+                font-size: $label-icon-size !important;
+                color: $label-icon-color;
+            }
+        }
+        input[type="text"], input[type="password"], textarea {
+            height: 100%;
+            font-size: 13px;
+            display: inline-block;
+            box-sizing: border-box;
+            float: right;
+            border: 0px;
+            border-top-right-radius: $form-radius;
+            border-bottom-right-radius: $form-radius;
+            width: calc(100% - #{$label-width});
+            padding-left: 10px;
+        }
+    }
+    > div.textarea {
+        height: $textarea-height;
+        i {
+            line-height: $textarea-height !important;
+        }
+        textarea {
+        padding-top: 8px;
+            resize: none;
+        }
+    }
+    > a {
+        color: $blue;
+        text-decoration: underline;
+        margin-bottom: 20px;
+        display: block;
+    }
+    input[type="submit"] {
+        
+    }
+    textarea:focus, input:focus {
+        outline: 0 none;
+    }
+}
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: $placeholder-color;
+    font-size: $placeholder-size;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: $placeholder-color;
+    opacity: 1;
+    font-size: $placeholder-size;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: $placeholder-color;
+    opacity: 1;
+    font-size: $placeholder-size;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: $placeholder-color;
+    font-size: $placeholder-size;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: $placeholder-color;
+    font-size: $placeholder-size;
+}
