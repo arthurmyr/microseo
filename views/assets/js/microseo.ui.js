@@ -84,7 +84,8 @@ $(function(){
         
         if(contentHeight < (windowHeight - headerHeight - footerHeight)) {
             $('body > footer').css('position', 'absolute')
-                              .css('bottom', '0px');
+                              .css('bottom', '0px')
+                              .css('visibility', 'visible');
         }
 
         $(window).resize(function(){
