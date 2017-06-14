@@ -5135,3 +5135,52 @@ input[type="submit"]:hover {
   padding-left: 18px;
   padding-right: 18px;
 }
+
+/* line 1, ../sass/components/_alert.scss */
+.alert {
+  position: relative;
+  line-height: 19px;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin-top: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 55px;
+  padding-right: 10px;
+  font-weight: 600;
+}
+/* line 12, ../sass/components/_alert.scss */
+.alert i {
+  position: absolute;
+  top: calc(50% - 15px);
+  left: 14px;
+  font-size: 30px;
+}
+
+/* line 19, ../sass/components/_alert.scss */
+.alert.success {
+  border-color: #65A356;
+  background-color: #A6E897;
+  color: #3C6E30;
+}
+
+/* line 24, ../sass/components/_alert.scss */
+.alert.info {
+  border-color: #5273A3;
+  background-color: #76AAF2;
+  color: #2B4161;
+}
+
+/* line 29, ../sass/components/_alert.scss */
+.alert.warning {
+  border-color: #AB9935;
+  background-color: #F4DD5B;
+  color: #6E6013;
+}
+
+/* line 34, ../sass/components/_alert.scss */
+.alert.danger {
+  border-color: #BD4444;
+  background-color: #FF7373;
+  color: #7D2A2A;
+}

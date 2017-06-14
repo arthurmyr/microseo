@@ -36,13 +36,6 @@ module.exports = function(app) {
             logged: false
         });
     })
-    .get('/about', function(req, res) {
-        res.render(templateModel, {
-            page: 'about',
-            pageTitle: 'About | MicroSeo',
-            logged: false
-        });
-    })
     .get('/contact', function(req, res) {
         res.render(templateModel, {
             page: 'contact',
@@ -99,9 +92,25 @@ module.exports = function(app) {
         req.session.destroy();
         return res.redirect('/');
     })
-    .post('/contact', function(req, res) {
-        console.log(req.body);
-    })
+//    .post('/contact', function(req, res) {
+//        var html = app.controllers.mailer.generateTemplate({
+//            title: 'Client message',
+//            firstname: req.body.firstname,
+//            lastname: req.body.lastname,
+//            email: req.body.email,
+//            message: req.body.message
+//        });
+//        var mailOptions = {
+//            to: 'microseo.staff@gmail.com',
+//            subject: 'Client message',
+//            html: html,
+//            text: ''
+//        }
+//        app.controllers.mailer.send(mailOptions, function(err, info) {
+//            if(err) res.redirect('/contact?response=error');
+//            res.redirect('/contact?response=success');
+//        });
+//    })
     .get('/profile', function(req, res) {
         if(!req.session.token || !req.session.user) {
             req.session.destroy();

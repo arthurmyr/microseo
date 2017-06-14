@@ -139,7 +139,33 @@ module.exports = function(app) {
     .delete('/api/audit', function(req, res) {
         
     })
-    .get('/api/analyze', function(req, res) {
+    .get('/api/service/analyze', function(req, res) {
         
-    });
+    })
+    .post('/api/service/sendmail', function(req, res) {
+        var html = app.controllers.mailer.generateTemplate({
+            title: 'Client message',
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            email: req.body.email,
+            message: req.body.message
+        });
+        var mailOptions = {
+            to: 'microseo.staff@gmail.com',
+            subject: 'Client message',
+            html: html,
+            text: ''
+        }
+        app.controllers.mailer.send(mailOptions, function(err, info) {
+            if(err) res.status(500).send({
+                status: 'error',
+                error: err,
+                message: 'An error occured during the process... We are sorry for this trouble.'
+            });
+            res.status(200).send({
+                status: 'success',
+                message: 'Mail Sended. We will reply as soon as possible.'
+            });
+        });
+    })
 }

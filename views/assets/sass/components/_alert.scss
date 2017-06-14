@@ -1,0 +1,67 @@
+.alert {
+    position: relative;
+    line-height: 19px;
+    border: 1px solid black;
+    border-radius: 3px;
+    margin-top: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 55px;
+    padding-right: 10px;
+    font-weight: 600;
+    i {
+        position: absolute;
+        top: calc(50% - 15px);
+        left: 14px;
+        font-size: 30px;
+    }
+}
+.alert.success {
+    border-color: #65A356;
+    background-color: #A6E897;
+    color: #3C6E30;
+}
+.alert.info {
+    border-color: #5273A3;
+    background-color: #76AAF2;
+    color: #2B4161;
+}
+.alert.warning {
+    border-color: #AB9935;
+    background-color: #F4DD5B;
+    color: #6E6013;
+}
+.alert.danger {
+    border-color: #BD4444;
+    background-color: #FF7373;
+    color: #7D2A2A;
+}
+
+
+// Sucess alert
+//
+//  <p class="alert success">
+//      <i class="fa fa-check-circle" aria-hidden="true"></i>
+//      Mail Sended. We will reply as soon as possible.
+//  </p>
+// 
+//  Info alert
+//
+//  <p class="alert info">
+//      <i class="fa fa-info-circle" aria-hidden="true"></i>
+//      An error occured during the process... We are sorry for this trouble.
+//  </p>
+//
+// Warning alert
+//
+//  <p class="alert warning">
+//      <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+//      Mail Sended. We will reply as soon as possible.
+//  </p>
+//
+//  Danger alert
+//
+//  <p class="alert danger">
+//      <i class="fa fa-times-circle" aria-hidden="true"></i>
+//      An error occured during the process... We are sorry for this trouble.
+//  </p>
