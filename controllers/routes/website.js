@@ -63,20 +63,6 @@ module.exports = function(app) {
     // Dynamic Routes //
     ////////////////////
     
-    .post('/signup', function(req, res) {
-        var user = new app.models.user(app, {
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            email: req.body.email,
-            password: app.controllers.security.hash(req.body.password)
-        });  
-        user.create(function(err, rows, fields) {
-            if(err) {
-                res.redirect('/signup?response=error');
-            }
-            res.redirect('/login');
-        });
-    })
     .post('/login', function(req, res) {
         security.auth(req.body.email, req.body.password, function(check, user) {
             if(!check) {
@@ -92,25 +78,6 @@ module.exports = function(app) {
         req.session.destroy();
         return res.redirect('/');
     })
-//    .post('/contact', function(req, res) {
-//        var html = app.controllers.mailer.generateTemplate({
-//            title: 'Client message',
-//            firstname: req.body.firstname,
-//            lastname: req.body.lastname,
-//            email: req.body.email,
-//            message: req.body.message
-//        });
-//        var mailOptions = {
-//            to: 'microseo.staff@gmail.com',
-//            subject: 'Client message',
-//            html: html,
-//            text: ''
-//        }
-//        app.controllers.mailer.send(mailOptions, function(err, info) {
-//            if(err) res.redirect('/contact?response=error');
-//            res.redirect('/contact?response=success');
-//        });
-//    })
     .get('/profile', function(req, res) {
         if(!req.session.token || !req.session.user) {
             req.session.destroy();

@@ -39,17 +39,18 @@ module.exports = function(app) {
             lastname: req.body.lastname,
             email: req.body.email,
             password: app.controllers.security.hash(req.body.password)
-        });  
+        });
         user.create(function(err, rows, fields) {
             if(err) {
                 return res.status(500).send({
                     status: 'error',
-                    error: err
+                    error: err,
+                    message: "The account can't be created for an unknown reason."
                 }); 
             }
             res.status(201).send({
-                status: 'sucess',
-                message: 'created'
+                status: 'success',
+                message: 'Your account has been created.'
             });
         });
     })
@@ -113,7 +114,7 @@ module.exports = function(app) {
             });
         });
     })
-    .post('/api/login', function(req, res) {
+    .post('/api/user/login', function(req, res) {
         app.controllers.security.auth(req.body.email, req.body.password, function(check, user) {
             if(!check) {
                 return res.status(403).send({
