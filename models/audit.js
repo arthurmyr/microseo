@@ -24,7 +24,7 @@ module.exports = function(app, data){
         
     }
     
-    this.read = function(cb) {
+    this.get = function(cb) {
         
     }
     

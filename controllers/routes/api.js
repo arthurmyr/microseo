@@ -14,7 +14,7 @@ module.exports = function(app) {
         var user = new app.models.user(app, {
             id: req.query.id
         });
-        user.read(function(err, rows, fields) {
+        user.get(function(err, rows, fields) {
             if(err) {
                 return res.status(500).send({
                     status: 'error',
@@ -28,29 +28,51 @@ module.exports = function(app) {
                 });
             }
             res.status(200).send({
-                status: 'sucess',
+                status: 'success',
                 data: rows[0]
             });
         });
     })
     .post('/api/user', function(req, res) {
-        var user = new app.models.user(app, {
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            email: req.body.email,
-            password: app.controllers.security.hash(req.body.password)
+        var token = app.drivers.crypto.encrypt({
+            email: req.body.email
+        });   
+        token = encodeURIComponent(token);
+        var html = app.controllers.mailer.generateTemplate({
+            type: 'confirmMail',
+            token: token
         });
-        user.create(function(err, rows, fields) {
-            if(err) {
+        var mailOptions = {
+            to: req.body.email,
+            subject: "Confirm your email",
+            html: html
+        }
+        app.controllers.mailer.send(mailOptions, function(err, info) {
+            if(err) {    
                 return res.status(500).send({
                     status: 'error',
                     error: err,
-                    message: "The account can't be created for an unknown reason."
-                }); 
+                    message: "Unable to send you the confirmation mail. Maybe the email is not correct."
+                });
             }
-            res.status(201).send({
-                status: 'success',
-                message: 'Your account has been created.'
+            var user = new app.models.user(app, {
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                email: req.body.email,
+                password: app.controllers.security.hash(req.body.password)
+            });
+            user.create(function(err, rows, fields) {
+                if(err) {
+                    return res.status(500).send({
+                        status: 'error',
+                        error: err,
+                        message: "The account can't be created for an unknown reason. Please contact an administrator."
+                    }); 
+                }
+                return res.status(201).send({
+                    status: 'success',
+                    message: 'Your account has been created. <br> We send you an email, please confirm your email adress to use the app.'
+                });
             });
         });
     })
@@ -92,7 +114,7 @@ module.exports = function(app) {
                 });
             }
             res.status(200).send({
-                status: 'sucess',
+                status: 'success',
                 message: 'updated'
             });
         });
@@ -109,23 +131,37 @@ module.exports = function(app) {
                 });
             }
             res.status(200).send({
-                status: 'sucess',
+                status: 'success',
                 message: 'deleted'
             });
         });
     })
     .post('/api/user/login', function(req, res) {
-        app.controllers.security.auth(req.body.email, req.body.password, function(check, user) {
-            if(!check) {
-                return res.status(403).send({
-                    status: 'error',
-                    error: 'bad password'
+        if(!req.body.email || !req.body.password) {
+            return res.status(400).send({
+                status: 'error',
+                error: 'bad request',
+                message: "Bad request."
+            });
+        }
+        app.controllers.security.auth(req.body.email, req.body.password, function(err, user) {
+            console.log(err);
+            if(err) {
+                var msg;
+                if(err === 'no account' || err === 'bad password') msg = "Wrong email or password..";
+                else if(err === 'inactive account') msg = 'Valid your account with the confirmation link.';
+                return res.status(404).send({
+                    status: 'success',
+                    valid: false,
+                    message: msg
                 });
             }
-            res.status(200).send({
-                status: 'sucess',
-                user: user
-            });
+            else {
+                return res.status(200).send({
+                    status: 'success',
+                    valid: true
+                });
+            }
         });
     })
     .get('/api/audit', function(req, res) {
@@ -143,9 +179,9 @@ module.exports = function(app) {
     .get('/api/service/analyze', function(req, res) {
         
     })
-    .post('/api/service/sendmail', function(req, res) {
+    .post('/api/service/mail/contact-us', function(req, res) {
         var html = app.controllers.mailer.generateTemplate({
-            title: 'Client message',
+            type: 'clientMail',
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             email: req.body.email,
@@ -154,19 +190,42 @@ module.exports = function(app) {
         var mailOptions = {
             to: 'microseo.staff@gmail.com',
             subject: 'Client message',
-            html: html,
-            text: ''
+            html: html
         }
         app.controllers.mailer.send(mailOptions, function(err, info) {
             if(err) res.status(500).send({
                 status: 'error',
                 error: err,
-                message: 'An error occured during the process... We are sorry for this trouble.'
+                message: "An error occured during the process... We are sorry for this trouble."
             });
             res.status(200).send({
                 status: 'success',
-                message: 'Mail Sended. We will reply as soon as possible.'
+                message: "Mail Sended. We will reply as soon as possible."
             });
         });
-    })
+    });
+//    .post('/api/tools/check-user', function(req, res) {
+//        if(!req.body.email || !req.body.password) {
+//            return res.status(400).send({
+//                status: 'error',
+//                error: 'bad request',
+//                message: "Bad request. Please tell it to an administrator with the contact form."
+//            });
+//        }
+//        app.controllers.security.auth(req.body.email, req.body.password, function(check, user) {
+//            if(!check) {
+//                return res.status(404).send({
+//                    status: 'success',
+//                    valid: false,
+//                    message: "Wrong email or password..."
+//                });
+//            }
+//            else {
+//                return res.status(200).send({
+//                    status: 'success',
+//                    valid: true
+//                })
+//            }
+//        });
+//    });
 }

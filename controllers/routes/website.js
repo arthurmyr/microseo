@@ -57,6 +57,10 @@ module.exports = function(app) {
             logged: false
         });
     })
+    .get('/logout', function(req, res) {
+        req.session.destroy();
+        return res.redirect('/login');
+    })
     
     
     ////////////////////
@@ -64,19 +68,41 @@ module.exports = function(app) {
     ////////////////////
     
     .post('/login', function(req, res) {
-        security.auth(req.body.email, req.body.password, function(check, user) {
-            if(!check) {
-                return res.status(403).redirect('/login?error=badpassword');
+        security.auth(req.body.email, req.body.password, function(err, user) {
+            if(err) {
+                return res.status(403).redirect('/login');
             }
-            
             req.session.user = user.id;
             req.session.token = user.token;
-            res.redirect('/dashboard');
+            return res.redirect('/dashboard');
         });
     })
-    .post('/logout', function(req, res) {
-        req.session.destroy();
-        return res.redirect('/');
+    .get('/confirm', function(req, res) {
+        var token = req.query.token;
+        var tokenData = app.drivers.crypto.decrypt(token);
+        var userCheck = new app.models.user(app, {
+            email: tokenData.email
+        });
+        userCheck.get(function(err, rows) {
+            var userData = rows[0];
+            if(err) return res.redirect('/login?confirm=false');
+            var userUpdate = new app.models.user(app, {
+                id: userData.id,
+                confirm: 1
+            });
+            userUpdate.update(function(err, rows) {
+                if(err) return res.redirect('/login?confirm=false');
+                
+                token = app.drivers.crypto.encrypt({
+                    id : userData.id,
+                    email : userData.email
+                });
+                req.session.user = userData.id;
+                req.session.token = token;
+                return res.redirect('/dashboard?confirm=true');
+            })
+            
+        });
     })
     .get('/profile', function(req, res) {
         if(!req.session.token || !req.session.user) {
@@ -93,7 +119,7 @@ module.exports = function(app) {
         var user = new app.models.user(app, {
             id: req.session.user
         });
-        user.read(function(err, rows) {
+        user.get(function(err, rows) {
             res.render(templateModel, {
                 page: 'profile',
                 pageTitle: 'Profile | MicroSeo',

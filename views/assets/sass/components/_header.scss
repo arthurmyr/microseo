@@ -45,5 +45,12 @@ body > header.offline {
 }
 
 body > header.online {
-    
+    width: 80%;
+    max-width: calc(100% - 250px);
+    float: right;
+    background-color: #363636;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: white;
 }

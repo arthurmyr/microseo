@@ -1,4 +1,49 @@
 body > aside {
-    width: 50px;
-    background: blue;
+    width: 20%;
+    height: calc(100% - 40px);
+    min-width: 250px;
+    background-color: $darkgrey;
+    padding-top: 30px;
+    .logo {
+        width: 30%;
+        display: block;
+        margin: auto;
+    }
+    ul {
+        margin-top: 40px;
+        li {
+            color: white;
+            height: 50px;
+            line-height: 50px;
+            font-size: 17px;
+            position: relative;
+            text-align: left;
+            @include single-transition(all, 300ms, ease);
+            a {
+                display: block;
+                width: 100%;
+                height: 100%;
+                box-sizing: border-box;
+                padding-left: 65px;
+                color: white;
+                font-size: 15px;
+            }
+            i {
+                position: absolute;
+                left: 20px;
+                top: calc(50% - 12.5px);
+                font-size: 25px !important;
+            }
+            i.fa-balance-scale {
+                left: 16px;
+            }
+        }
+        li:hover {
+            background-color: $grey;
+            @include single-transition(all, 300ms, ease);
+        }
+        li.active {
+            background-color: $blue;
+        }
+    }
 }

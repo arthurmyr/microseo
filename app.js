@@ -25,7 +25,7 @@ app.models.audit = require('./models/audit');
 app.controllers = {}
 app.controllers.tools = require('./controllers/tools');
 app.controllers.security = require('./controllers/security')(app);
-app.controllers.mailer = require('./controllers/mailer');
+app.controllers.mailer = require('./controllers/mailer')();
 app.controllers.crawler = require('./controllers/crawler');
 
 app.controllers.analyzers = {};

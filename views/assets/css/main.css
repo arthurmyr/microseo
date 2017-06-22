@@ -4904,7 +4904,7 @@ h2 {
 }
 
 /* line 23, ../sass/common/_theme.scss */
-p, span, a {
+p, span, a, li {
   font-family: "opensans", sans-serif;
   font-weight: 300;
   font-size: 12px;
@@ -4977,14 +4977,86 @@ body > header.offline nav ul.auth {
   margin-left: 40px;
 }
 
+/* line 47, ../sass/components/_header.scss */
+body > header.online {
+  width: 80%;
+  max-width: calc(100% - 250px);
+  float: right;
+  background-color: #363636;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: white;
+}
+
 /* line 1, ../sass/components/_sidebar.scss */
 body > aside {
-  width: 50px;
-  background: blue;
+  width: 20%;
+  height: calc(100% - 40px);
+  min-width: 250px;
+  background-color: #262626;
+  padding-top: 30px;
+}
+/* line 7, ../sass/components/_sidebar.scss */
+body > aside .logo {
+  width: 30%;
+  display: block;
+  margin: auto;
+}
+/* line 12, ../sass/components/_sidebar.scss */
+body > aside ul {
+  margin-top: 40px;
+}
+/* line 14, ../sass/components/_sidebar.scss */
+body > aside ul li {
+  color: white;
+  height: 50px;
+  line-height: 50px;
+  font-size: 17px;
+  position: relative;
+  text-align: left;
+  -moz-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  -webkit-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
+/* line 22, ../sass/components/_sidebar.scss */
+body > aside ul li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding-left: 65px;
+  color: white;
+  font-size: 15px;
+}
+/* line 31, ../sass/components/_sidebar.scss */
+body > aside ul li i {
+  position: absolute;
+  left: 20px;
+  top: calc(50% - 12.5px);
+  font-size: 25px !important;
+}
+/* line 37, ../sass/components/_sidebar.scss */
+body > aside ul li i.fa-balance-scale {
+  left: 16px;
+}
+/* line 41, ../sass/components/_sidebar.scss */
+body > aside ul li:hover {
+  background-color: #363636;
+  -moz-transition: all 300ms ease;
+  -o-transition: all 300ms ease;
+  -webkit-transition: all 300ms ease;
+  transition: all 300ms ease;
+}
+/* line 45, ../sass/components/_sidebar.scss */
+body > aside ul li.active {
+  background-color: #00ADEF;
 }
 
 /* line 1, ../sass/components/_footer.scss */
 body > footer {
+  visibility: hidden;
   height: 40px;
   width: 100%;
   line-height: 40px;
@@ -5099,7 +5171,12 @@ form textarea:focus, form input:focus {
 }
 
 /* line 1, ../sass/components/_button.scss */
-input[type="submit"] {
+button:focus, input[type="submit"]:focus {
+  outline: none;
+}
+
+/* line 4, ../sass/components/_button.scss */
+input[type="submit"], button {
   background-color: #00ADEF;
   border-radius: 3px;
   color: white;
@@ -5107,12 +5184,12 @@ input[type="submit"] {
   font-weight: 600;
 }
 
-/* line 8, ../sass/components/_button.scss */
-input[type="submit"]:hover {
+/* line 11, ../sass/components/_button.scss */
+input[type="submit"]:hover, button:hover {
   background-color: #0092C9;
 }
 
-/* line 11, ../sass/components/_button.scss */
+/* line 14, ../sass/components/_button.scss */
 .sm-btn {
   font-size: 13px;
   height: 34px;
@@ -5120,7 +5197,7 @@ input[type="submit"]:hover {
   padding-right: 12px;
 }
 
-/* line 18, ../sass/components/_button.scss */
+/* line 21, ../sass/components/_button.scss */
 .md-btn {
   font-size: 15px;
   height: 37px;
@@ -5128,12 +5205,52 @@ input[type="submit"]:hover {
   padding-right: 14px;
 }
 
-/* line 25, ../sass/components/_button.scss */
+/* line 28, ../sass/components/_button.scss */
 .lg-btn {
   font-size: 17px;
   height: 40px;
   padding-left: 18px;
   padding-right: 18px;
+}
+
+/* line 34, ../sass/components/_button.scss */
+input[type="submit"].valid, button.valid {
+  background-color: #83C274;
+}
+
+/* line 37, ../sass/components/_button.scss */
+input[type="submit"]:hover.valid, button:hover.valid {
+  background-color: #65A356;
+}
+
+/* line 41, ../sass/components/_button.scss */
+input[type="submit"].neutral, button.neutral {
+  background-color: #5E95E0;
+}
+
+/* line 44, ../sass/components/_button.scss */
+input[type="submit"]:hover.neutral, button:hover.neutral {
+  background-color: #5273A3;
+}
+
+/* line 48, ../sass/components/_button.scss */
+input[type="submit"].warning, button.warning {
+  background-color: #E8CC2E;
+}
+
+/* line 51, ../sass/components/_button.scss */
+input[type="submit"]:hover.warning, button:hover.warning {
+  background-color: #AB9935;
+}
+
+/* line 55, ../sass/components/_button.scss */
+input[type="submit"].danger, button.danger {
+  background-color: #ED5353;
+}
+
+/* line 58, ../sass/components/_button.scss */
+input[type="submit"]:hover.danger, button:hover.danger {
+  background-color: #BD4444;
 }
 
 /* line 1, ../sass/components/_alert.scss */
@@ -5183,4 +5300,81 @@ input[type="submit"]:hover {
   border-color: #BD4444;
   background-color: #FF7373;
   color: #7D2A2A;
+}
+
+/* line 19, ../sass/components/_popup.scss */
+.black-overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 2;
+}
+
+/* line 28, ../sass/components/_popup.scss */
+.popup {
+  width: 450px;
+  position: absolute;
+  top: calc(50% - (250px / 2));
+  left: calc(50% - (450px / 2));
+  background-color: white;
+  padding-bottom: 20px;
+  text-align: center;
+}
+/* line 36, ../sass/components/_popup.scss */
+.popup header {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #00ADEF;
+  margin-bottom: 20px;
+}
+/* line 42, ../sass/components/_popup.scss */
+.popup header p {
+  color: white;
+  font-family: "titillium web", sans-serif;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 600;
+}
+/* line 50, ../sass/components/_popup.scss */
+.popup main {
+  box-sizing: border-box;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+/* line 54, ../sass/components/_popup.scss */
+.popup main p {
+  line-height: 20px;
+}
+/* line 57, ../sass/components/_popup.scss */
+.popup main p.signature {
+  margin-top: 15px;
+  font-weight: 400;
+}
+/* line 61, ../sass/components/_popup.scss */
+.popup main button {
+  margin-top: 20px;
+}
+
+/* line 67, ../sass/components/_popup.scss */
+.popup.success header {
+  background-color: #83C274;
+}
+
+/* line 72, ../sass/components/_popup.scss */
+.popup.info header {
+  background-color: #5E95E0;
+}
+
+/* line 77, ../sass/components/_popup.scss */
+.popup.warning header {
+  background-color: #E8CC2E;
+}
+
+/* line 82, ../sass/components/_popup.scss */
+.popup.danger header {
+  background-color: #ED5353;
 }

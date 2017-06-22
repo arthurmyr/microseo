@@ -1,8 +1,43 @@
 <% if(logged) { %>
 <aside>
-    <img src="/img/logo-blue.svg" alt="Logo MicroSeo bleu">
+    <img class="logo" src="/img/logo-blue.svg" alt="Logo MicroSeo bleu">
     <ul>
-        <li></li>
+        <li <% if(page === 'dashboard') { %> class="active" <% } %>>
+            <a href="/dashboard">
+                <i class="fa fa-tachometer" aria-hidden="true"></i>
+                Dashboard
+            </a>
+        </li>
+        <li <% if(page === 'audit') { %> class="active" <% } %>>
+            <a href="/audit">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                Audit
+            </a>
+        </li>
+        <li <% if(page === 'comparator') { %> class="active" <% } %>>
+            <a href="comparator">
+                <i class="fa fa-balance-scale" aria-hidden="true"></i>
+                Comparator
+            </a>
+        </li>
+        <li <% if(page === 'history') { %> class="active" <% } %>>
+            <a href="/history">
+                <i class="fa fa-history" aria-hidden="true"></i>
+                History
+            </a>
+        </li>
+        <li <% if(page === 'profile') { %> class="active" <% } %>>
+            <a href="/profile">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                My Profile
+            </a>
+        </li>
+        <li>
+            <a href="/logout">   
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                Logout
+            </a>
+        </li>
     </ul>
 </aside>
 <% } %>

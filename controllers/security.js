@@ -8,24 +8,25 @@ module.exports = function(app) {
             return hash;
         },
         auth: function(email, password, cb) {
-            var q = "SELECT id, email, password FROM users WHERE email='"+ email+"'";
+            var q = "SELECT id, email, password, confirm FROM users WHERE email='"+ email+"' LIMIT 1";
             app.drivers.mysql.query(q, function(err, rows, fields) {
+                if(rows.length === 0) return cb('no account', null);
+                
                 var userData = rows[0],
                 check = bcrypt.compareSync(password, userData.password);
                 
-                if(!check)
-                    return cb(check, null)
+                if(!check) return cb('bad password', null);
+                else if(userData.confirm === 0) return cb('inactive account', null);
 
                 var user = new app.models.user(app, {
                   id: userData.id
                 });
-                user.read(function(err, rows, fields) {
-                    rows.token = app.drivers.crypto.encrypt({
+                user.get(function(err, rows, fields) {
+                    userData.token = app.drivers.crypto.encrypt({
                         id : userData.id,
                         email : userData.email
                     });
-                    
-                    cb(check, rows);
+                    cb(null, userData);
                 });		
             });
         },

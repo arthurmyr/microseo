@@ -1,0 +1,91 @@
+///////////////////
+// POPUP EXEMPLE //
+///////////////////
+
+//  <div class="black-overlay">
+//      <div class="popup success">
+//          <header>
+//              <p>Account activation</p>
+//          </header>
+//          <main>
+//            <p>Your account is now activated, you can enjoy our SEO services.</p> 
+//            <p>Don't hesitate to contact us for any problem or question about MicroSeo.</p>
+//            <p class="signature">The MicroSeo Team</p>
+//            <button class='sm-btn valid' type="button">Got it !</button>
+//          </main>
+//      </div>
+//  </div>
+
+.black-overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+}
+.popup {
+    width: 450px;
+    position: absolute;
+    top: calc(50% - (250px / 2));
+    left: calc(50% - (450px / 2));
+    background-color: white;
+    padding-bottom: 20px;
+    text-align: center;
+    header {
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: $blue;
+        margin-bottom: 20px;
+        p {
+            color: white;
+            font-family: $titillium;
+            font-size: $md-title;
+            text-align: center;
+            font-weight: 600;
+        }
+    }
+    main {
+        box-sizing: border-box;
+        padding-left: 40px;
+        padding-right: 40px;
+        p {
+            line-height: 20px;
+        }
+        p.signature {
+            margin-top: 15px;
+            font-weight: 400;
+        }
+        button {
+            margin-top: 20px;
+        }
+    }
+}
+.popup.success {
+    header {
+        background-color: #83C274;
+    }
+}
+.popup.info {
+    header {
+        background-color: #5E95E0;
+    }
+}
+.popup.warning {
+    header {
+        background-color: #E8CC2E;
+    }
+}
+.popup.danger {
+    header {
+        background-color: #ED5353;
+    }
+}
+
+
+
+
+
+

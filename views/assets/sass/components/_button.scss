@@ -1,11 +1,14 @@
-input[type="submit"] {
+button:focus, input[type="submit"]:focus {
+    outline: none;
+}
+input[type="submit"], button {
     background-color: $blue;
     border-radius: 3px;
     color: white;
     border: 0px;
     font-weight: 600;
 }
-input[type="submit"]:hover {
+input[type="submit"]:hover, button:hover {
     background-color: #0092C9;
 }
 .sm-btn {
@@ -27,4 +30,31 @@ input[type="submit"]:hover {
     height: 40px;
     padding-left: 18px;
     padding-right: 18px; 
+}
+input[type="submit"].valid, button.valid {
+    background-color: #83C274;
+}
+input[type="submit"]:hover.valid, button:hover.valid {
+    background-color: #65A356;
+}
+
+input[type="submit"].neutral, button.neutral {
+    background-color: #5E95E0;
+}
+input[type="submit"]:hover.neutral, button:hover.neutral {
+    background-color: #5273A3;
+}
+
+input[type="submit"].warning, button.warning {
+    background-color: #E8CC2E;
+}
+input[type="submit"]:hover.warning, button:hover.warning {
+    background-color: #AB9935;
+}
+
+input[type="submit"].danger, button.danger {
+    background-color: #ED5353;
+}
+input[type="submit"]:hover.danger, button:hover.danger {
+    background-color: #BD4444;
 }

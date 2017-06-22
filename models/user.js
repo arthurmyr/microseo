@@ -18,6 +18,7 @@ module.exports = function(app, data){
     this.data.additional_adress = data.additional_adress || null;
     this.data.created_at = data.created_at || null;
     this.data.updated_at = data.updated_at || null;
+    this.data.confirm = data.confirm || null;
     
     this.table = 'users';
 
@@ -39,10 +40,15 @@ module.exports = function(app, data){
         })
     }
     
-    this.read = function(cb) {
-        var q = 'SELECT * FROM '+ this.table +' WHERE id='+ this.data.id;
+    this.get = function(cb) {
+        if(this.data.id) {
+            var q = "SELECT * FROM "+ this.table +" WHERE id="+ this.data.id;
+        }
+        else if(this.data.email) {
+            var q = "SELECT * FROM "+ this.table +" WHERE email='"+ this.data.email +"'";
+        }
         mysql.query(q, function(err, rows, fields) {
-            cb(err, rows[0], fields);
+            cb(err, rows, fields);
         });
     }
     
@@ -55,7 +61,6 @@ module.exports = function(app, data){
             }
         }
         q += "updated_at='"+ tools.getDateTime() +"' WHERE id='"+ data.id +"'";
-        console.log(tools.getDateTime());
         mysql.query(q, function(err, rows, fields) {
             cb(err, rows, fields);
         });
