@@ -194,7 +194,7 @@ $(function(){
             $(this).parent().parent().parent().remove();
         });
         function placePopup() {
-            var popupAbsoluteTop = ($(window).height() / 2) - ($('.popup').height() / 2);
+            var popupAbsoluteTop = ($(window).outerHeight() / 2) - ($('.popup').outerHeight() / 2);
             $('.popup').css('top', popupAbsoluteTop);
             
             $(window).resize(function() {
@@ -208,20 +208,140 @@ $(function(){
     
     microseo.ui.footer = function() {
         var windowHeight = $(window).outerHeight();
+        var windowWidth = $(window).outerWidth();
         var headerHeight = $('body > header').outerHeight();
         var footerHeight = $('body > footer').outerHeight();
         var contentHeight = $('body > main').outerHeight();
+        var footer = $('body > footer');
         
         if(contentHeight < (windowHeight - headerHeight - footerHeight)) {
-            $('body > footer').css('position', 'absolute')
-                              .css('bottom', '0px')
-                              .css('visibility', 'visible');
+            footer.css('position', 'absolute')
+                  .css('bottom', '0px');
         }
-
+        
+        if($('header.online').length) {
+            footer.css('right', '0px')
+                  .css('width', '80%')
+                  .css('max-width', windowWidth - 250);
+        }
+        
         $(window).resize(function(){
             setTimeout(function() {  
                 microseo.ui.footer();
             }, 500);
         })
+    }
+    
+    microseo.ui.particules = function() {
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#0094CC"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#00adef"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    },
+                    "image": {
+                        "src": "img/github.svg",
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "opacity": {
+                    "value": 0.6,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 128.27296486924183,
+                    "color": "#00adef",
+                    "opacity": 0.3367165327817598,
+                    "width": 0.9620472365193136
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 167.83216783216784,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
     }
 });

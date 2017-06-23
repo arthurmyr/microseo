@@ -4904,19 +4904,28 @@ h2 {
 }
 
 /* line 23, ../sass/common/_theme.scss */
+h3 {
+  font-family: "titillium web", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+/* line 30, ../sass/common/_theme.scss */
 p, span, a, li {
   font-family: "opensans", sans-serif;
   font-weight: 300;
   font-size: 12px;
 }
 
-/* line 28, ../sass/common/_theme.scss */
+/* line 35, ../sass/common/_theme.scss */
 a {
   text-decoration: none;
   color: black;
 }
 
-/* line 32, ../sass/common/_theme.scss */
+/* line 39, ../sass/common/_theme.scss */
 body > main {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -4992,7 +5001,7 @@ body > header.online {
 /* line 1, ../sass/components/_sidebar.scss */
 body > aside {
   width: 20%;
-  height: calc(100% - 40px);
+  height: calc(100% - 30px);
   min-width: 250px;
   background-color: #262626;
   padding-top: 30px;
@@ -5035,7 +5044,7 @@ body > aside ul li i {
   position: absolute;
   left: 20px;
   top: calc(50% - 12.5px);
-  font-size: 25px !important;
+  font-size: 22px !important;
 }
 /* line 37, ../sass/components/_sidebar.scss */
 body > aside ul li i.fa-balance-scale {
@@ -5056,9 +5065,9 @@ body > aside ul li.active {
 
 /* line 1, ../sass/components/_footer.scss */
 body > footer {
-  visibility: hidden;
   height: 40px;
   width: 100%;
+  max-width: 100%;
   line-height: 40px;
   background-color: #363636;
   color: white;
@@ -5176,7 +5185,8 @@ button:focus, input[type="submit"]:focus {
 }
 
 /* line 4, ../sass/components/_button.scss */
-input[type="submit"], button {
+input[type="submit"], button, a.sm-btn, a.md-btn, a.lg-btn {
+  display: inline-block;
   background-color: #00ADEF;
   border-radius: 3px;
   color: white;
@@ -5184,12 +5194,12 @@ input[type="submit"], button {
   font-weight: 600;
 }
 
-/* line 11, ../sass/components/_button.scss */
-input[type="submit"]:hover, button:hover {
+/* line 12, ../sass/components/_button.scss */
+input[type="submit"]:hover, button:hover, a:hover.sm-btn, a:hover.md-btn, a:hover.lg-btn {
   background-color: #0092C9;
 }
 
-/* line 14, ../sass/components/_button.scss */
+/* line 15, ../sass/components/_button.scss */
 .sm-btn {
   font-size: 13px;
   height: 34px;
@@ -5197,7 +5207,12 @@ input[type="submit"]:hover, button:hover {
   padding-right: 12px;
 }
 
-/* line 21, ../sass/components/_button.scss */
+/* line 22, ../sass/components/_button.scss */
+a.sm-btn {
+  line-height: 34px;
+}
+
+/* line 25, ../sass/components/_button.scss */
 .md-btn {
   font-size: 15px;
   height: 37px;
@@ -5205,7 +5220,12 @@ input[type="submit"]:hover, button:hover {
   padding-right: 14px;
 }
 
-/* line 28, ../sass/components/_button.scss */
+/* line 32, ../sass/components/_button.scss */
+a.md-btn {
+  line-height: 37px;
+}
+
+/* line 35, ../sass/components/_button.scss */
 .lg-btn {
   font-size: 17px;
   height: 40px;
@@ -5213,42 +5233,47 @@ input[type="submit"]:hover, button:hover {
   padding-right: 18px;
 }
 
-/* line 34, ../sass/components/_button.scss */
+/* line 41, ../sass/components/_button.scss */
+a.lg-btn {
+  line-height: 40px;
+}
+
+/* line 44, ../sass/components/_button.scss */
 input[type="submit"].valid, button.valid {
   background-color: #83C274;
 }
 
-/* line 37, ../sass/components/_button.scss */
+/* line 47, ../sass/components/_button.scss */
 input[type="submit"]:hover.valid, button:hover.valid {
   background-color: #65A356;
 }
 
-/* line 41, ../sass/components/_button.scss */
+/* line 51, ../sass/components/_button.scss */
 input[type="submit"].neutral, button.neutral {
   background-color: #5E95E0;
 }
 
-/* line 44, ../sass/components/_button.scss */
+/* line 54, ../sass/components/_button.scss */
 input[type="submit"]:hover.neutral, button:hover.neutral {
   background-color: #5273A3;
 }
 
-/* line 48, ../sass/components/_button.scss */
+/* line 58, ../sass/components/_button.scss */
 input[type="submit"].warning, button.warning {
   background-color: #E8CC2E;
 }
 
-/* line 51, ../sass/components/_button.scss */
+/* line 61, ../sass/components/_button.scss */
 input[type="submit"]:hover.warning, button:hover.warning {
   background-color: #AB9935;
 }
 
-/* line 55, ../sass/components/_button.scss */
+/* line 65, ../sass/components/_button.scss */
 input[type="submit"].danger, button.danger {
   background-color: #ED5353;
 }
 
-/* line 58, ../sass/components/_button.scss */
+/* line 68, ../sass/components/_button.scss */
 input[type="submit"]:hover.danger, button:hover.danger {
   background-color: #BD4444;
 }
@@ -5377,4 +5402,78 @@ input[type="submit"]:hover.danger, button:hover.danger {
 /* line 82, ../sass/components/_popup.scss */
 .popup.danger header {
   background-color: #ED5353;
+}
+
+/* line 1, ../sass/templates/_home.scss */
+#home {
+  padding-top: 0px;
+  position: relative;
+}
+/* line 4, ../sass/templates/_home.scss */
+#home #particles-js {
+  width: 100%;
+  height: calc(100% - 50px);
+  background-color: #212121;
+  background-image: url("");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+/* line 13, ../sass/templates/_home.scss */
+#home section.welcome {
+  position: absolute;
+  box-sizing: border-box;
+  width: 480px;
+  top: calc(50% - (266px / 2));
+  left: calc(50% - (480px / 2));
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  background-color: #363636;
+  color: white;
+  border-radius: 3px;
+}
+/* line 27, ../sass/templates/_home.scss */
+#home section.welcome h3 {
+  margin-bottom: 10px;
+}
+/* line 30, ../sass/templates/_home.scss */
+#home section.welcome p {
+  font-size: 13px;
+  display: block;
+  margin: auto;
+  line-height: 22px;
+  width: 80%;
+}
+/* line 37, ../sass/templates/_home.scss */
+#home section.welcome strong {
+  font-weight: 600 !important;
+}
+/* line 40, ../sass/templates/_home.scss */
+#home section.welcome .buttons {
+  margin-top: 35px;
+}
+/* line 42, ../sass/templates/_home.scss */
+#home section.welcome .buttons a {
+  width: 40%;
+}
+/* line 44, ../sass/templates/_home.scss */
+#home section.welcome .buttons a i {
+  position: relative;
+  right: 15px;
+}
+/* line 50, ../sass/templates/_home.scss */
+#home section.welcome .buttons a:first-child {
+  margin-right: 20px;
+}
+/* line 52, ../sass/templates/_home.scss */
+#home section.welcome .buttons a:first-child i {
+  font-size: 21px !important;
+  top: 3px;
+}
+/* line 57, ../sass/templates/_home.scss */
+#home section.welcome .buttons a:last-child i {
+  font-size: 18px !important;
 }

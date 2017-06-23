@@ -6,4 +6,5 @@ $(function(){
     microseo.ui.footer();
     microseo.ui.popup();
     microseo.ui.form();
+    microseo.ui.particules();
 });
