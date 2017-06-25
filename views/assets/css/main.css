@@ -5540,11 +5540,11 @@ input[type="submit"]:hover.danger, button:hover.danger {
   height: 110%;
   background-image: url("/img/sky.jpg");
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: 120%;
   background-position: center center;
   z-index: -1;
 }
-/* line 20, ../sass/templates/_audit.scss */
+/* line 19, ../sass/templates/_audit.scss */
 #audit form #auditbar {
   border: 0;
   background: white;
@@ -5555,7 +5555,7 @@ input[type="submit"]:hover.danger, button:hover.danger {
   left: 20%;
   border-radius: 3px;
 }
-/* line 29, ../sass/templates/_audit.scss */
+/* line 28, ../sass/templates/_audit.scss */
 #audit form #auditbar label {
   width: 45px;
   display: inline-block;
@@ -5565,7 +5565,7 @@ input[type="submit"]:hover.danger, button:hover.danger {
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-/* line 38, ../sass/templates/_audit.scss */
+/* line 37, ../sass/templates/_audit.scss */
 #audit form #auditbar input {
   font-size: 14px;
   box-sizing: border-box;
@@ -5579,7 +5579,7 @@ input[type="submit"]:hover.danger, button:hover.danger {
   vertical-align: top;
   border-radius: 0;
 }
-/* line 51, ../sass/templates/_audit.scss */
+/* line 50, ../sass/templates/_audit.scss */
 #audit form #auditbar button {
   font-size: 14px;
   width: 70px;
@@ -5588,7 +5588,7 @@ input[type="submit"]:hover.danger, button:hover.danger {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
-/* line 59, ../sass/templates/_audit.scss */
+/* line 58, ../sass/templates/_audit.scss */
 #audit form #auditbar i {
   line-height: 35px !important;
   font-size: 20px !important;

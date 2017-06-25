@@ -176,8 +176,7 @@ module.exports = function(app) {
             return res.redirect('/login');
         }
         
-        analyze.init('https://fr.wikipedia.org', function(results) {
-            console.log(results);
+        analyze.init(req.body.url, function(results) {
             return res.render(templateModel, {
                 page: 'audit-result',
                 pageTitle: 'Audit Result | MicroSeo',
