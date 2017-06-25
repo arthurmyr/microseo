@@ -1,0 +1,58 @@
+#audit-result {
+//    padding-top: 0;
+    #url {
+        
+    }
+    #score-chart-container {
+        position: relative;
+        width: 25%;
+        margin: auto;
+        margin-bottom: 20px;
+        span {
+            position: absolute;
+            top: calc(59% - (24px / 2));
+            left: calc(50% - (47.2px / 2));
+            font-weight: 600;
+            font-size: 24px;
+        }
+    }
+    > section {
+        text-align: center;
+        h3 {
+            background: #ADADAD;
+            box-sizing: border-box;
+            height: 40px;
+            line-height: 40px;
+            font-weight: 600;
+            color: white;
+        }
+        > div {
+            vertical-align: top;
+            margin-bottom: 20px;
+            h4 {
+                height: 30px;
+                line-height: 30px;
+                background: #F3F3F3;
+                margin-bottom: 10px;
+                i {
+                    margin-right: 10px;
+                }
+            }
+        }
+        > div.success {
+            h4 {
+                color: #83C274;
+            }
+        }
+        > div.warning {
+            h4 {       
+                color: #E8CC2E;
+            }
+        }
+        > div.error {
+            h4 {
+                color: #ED5353;
+            }
+        }
+    }
+}

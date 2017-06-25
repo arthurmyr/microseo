@@ -74,7 +74,7 @@ module.exports = function(app) {
             }
             req.session.user = user.id;
             req.session.token = user.token;
-            return res.redirect('/dashboard');
+            return res.redirect('/audit');
         });
     })
     .get('/confirm', function(req, res) {
@@ -165,10 +165,27 @@ module.exports = function(app) {
             logged: true
         });
     })
-    .post('/audit', function(req, res) {
-        //        analyze.init('https://fr.wikipedia.org');
-        //        analyze.init('https://www.lequipe.fr/Football');
-        analyze.init(req.url);
+    .post('/audit/result', function(req, res) {
+        if(!req.session.token || !req.session.user) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        var grant = security.grant(req.session.user, req.session.token);
+        if(!grant) {
+            req.session.destroy();
+            return res.redirect('/login');
+        }
+        
+        analyze.init('https://fr.wikipedia.org', function(results) {
+            console.log(results);
+            return res.render(templateModel, {
+                page: 'audit-result',
+                pageTitle: 'Audit Result | MicroSeo',
+                h2: 'Audit Result',
+                logged: true,
+                res: results
+            });
+        });
     })
     .get('/comparator', function(req, res) {
         if(!req.session.token || !req.session.user) {

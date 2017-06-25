@@ -6,13 +6,17 @@ module.exports = function(app) {
         responsiveAnalyzer = app.controllers.analyzers.responsive;
     
     return {
-        init: function(url) {
+        init: function(url, cb) {
             crawler.getDom(url, function($) {
-                htmlAnalyzer.init($);
+                var results = {};
+                
+                results.url = url;
+                results.html = htmlAnalyzer.init($);
 //                speedAnalyzer.init($);
 //                responsiveAnalyzer.init($);
 //                speedAnalyzer.init($);
 //                httpAnalyzer.init($);
+                cb(results);
             });
             
 //            crawler.checkUrl('https://fr.wikipedia.or', function(valid) {

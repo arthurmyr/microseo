@@ -8,4 +8,5 @@ $(function(){
     microseo.ui.form();
     microseo.ui.particules();
     microseo.ui.welcome();
+    microseo.ui.audit();
 });

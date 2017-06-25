@@ -1,0 +1,65 @@
+<main id="audit-result">
+   <h3 id="url"><%= res.url %></h3>
+   
+    <div id="score-chart-container">
+        <canvas id="score-chart"></canvas>
+        <span><%= res.html.score %>%</span>
+    </div>
+    
+    <section>
+        <h3>HTML</h3>
+        
+        <% if(!res.html.pageTitle.error && !res.html.pageTitle.warning) { %>
+        <div class="success">
+            <h4>
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Page Title
+            </h4>
+            <p>Length: <%= res.html.pageTitle.length %></p>
+        </div>
+        <% } else if(res.html.pageTitle.warning) { %>
+        <div class="warning">
+            <h4>
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                Page Title
+            </h4>
+            <p><%= res.html.pageTitle.warning %></p>
+        </div>
+        <% } else if(res.html.pageTitle.error) { %>
+        <div class="error">
+            <h4>
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Page Title
+            </h4>
+            <p><%= res.html.pageTitle.error %></p>
+        </div>
+        <% } %>
+        
+        <% if(!res.html.metaDescription.error && !res.html.metaDescription.warning) { %>
+        <div class="success">
+            <h4>
+                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                Meta Description
+            </h4>
+            <p>Length: <%= res.html.metaDescription.length %></p>
+        </div>
+        <% } else if(res.html.metaDescription.warning) { %>
+        <div class="warning">
+            <h4>
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                Meta Description
+            </h4>
+            <p><%= res.html.metaDescription.warning %></p>
+        </div>
+        <% } else if(res.html.metaDescription.error) { %>
+        <div class="error">
+            <h4>
+                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                Meta Description
+            </h4>
+            <p><%= res.html.metaDescription.error %></p>
+        </div>
+        <% } %>
+    </section>
+   
+</main>

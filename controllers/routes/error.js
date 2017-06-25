@@ -4,6 +4,6 @@ module.exports = function(app) {
     // 404
     server
     .use(function(req, res){
-        res.redirect('/');
+        res.redirect('/audit');
     });
 }

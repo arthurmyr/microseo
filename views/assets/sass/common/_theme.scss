@@ -27,6 +27,12 @@ h3 {
     text-align: center;
     padding-bottom: 20px;
 }
+h4 {
+    font-family: $titillium;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
+}
 p, span, a, li, label {
     font-family: $opensans;
     font-weight: 300;
@@ -41,7 +47,7 @@ body > main {
     padding-bottom: 20px;
 }
 
-#dashboard, #audit, #comparator, #history, #profile {
+#dashboard, #audit, #audit-result, #comparator, #history, #profile {
     float: right;
     width: 85%;
     max-width: calc(100% - 200px);

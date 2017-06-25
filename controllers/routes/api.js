@@ -175,8 +175,10 @@ module.exports = function(app) {
     .delete('/api/audit', function(req, res) {
         
     })
-    .get('/api/service/analyze', function(req, res) {
-        
+    .post('/api/service/analyze', function(req, res) {
+        app.controllers.analyze.init(req.body.url, function(results) {
+            res.status(200).send(results);
+        });
     })
     .post('/api/service/mail/contact-us', function(req, res) {
         var html = app.controllers.mailer.generateTemplate({

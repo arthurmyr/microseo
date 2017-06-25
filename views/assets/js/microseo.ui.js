@@ -214,10 +214,7 @@ $(function(){
         var contentHeight = $('body > main').outerHeight();
         var footer = $('body > footer');
         
-        console.log(contentHeight);
-        console.log((windowHeight - headerHeight - footerHeight));
         if(contentHeight < (windowHeight - headerHeight - footerHeight)) {
-        console.log(true);
             footer.css('position', 'absolute')
                   .css('bottom', '0px')
                   .css('z-index', 10);
@@ -358,6 +355,30 @@ $(function(){
     }
     
     microseo.ui.audit = function() {
+        if(window.location.pathname !== '/audit/result') return;
         
+        var url = $('#url').text();
+        $.post('/api/service/analyze', {url: url}).done(function(results) {
+            var scoreChart = {
+                labels: ['Success', 'Errors', 'Warnings'],
+                datasets: [{
+                    data: [results.html.successes, results.html.errors, results.html.warnings],
+                    backgroundColor: [
+                        "#A6E897", "#FF7373", "#F4DD5B" 
+                    ],
+                    hoverBackgroundColor: [
+                        "#A6E897", "#FF7373", "#F4DD5B"
+                    ]
+                }]
+            };
+            var scoreChart = new Chart($("#score-chart"), {
+              type: 'doughnut',
+              data: scoreChart,
+              options: {
+                  responsive: true,
+                  maintainAspectRatio: true
+              }
+            });
+        });
     }
 });
