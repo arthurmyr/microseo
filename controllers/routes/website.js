@@ -125,7 +125,7 @@ module.exports = function(app) {
                 pageTitle: 'Profile | MicroSeo',
                 h2: 'Profile',
                 logged: true,
-                user: rows
+                user: rows[0]
             });
         }) 
     })

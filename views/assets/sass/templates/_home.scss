@@ -1,16 +1,17 @@
 #home {
     padding-top: 0px;
     position: relative;
+    padding-bottom: 0px;
     #particles-js {
         width: 100%;
-        height: calc(100% - 50px);
+        height: calc(100% - 50px - 40px);
         background-color: #212121;
         background-image: url("");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: 50% 50%; 
     }
-    section.welcome {
+    .welcome {
         position: absolute;
         box-sizing: border-box;
         width: 480px;
@@ -50,7 +51,7 @@
             a:first-child {
                 margin-right: 20px;
                 i {
-                    font-size: 21px !important;
+                    font-size: 22px !important;
                     top: 3px;
                 }
             }

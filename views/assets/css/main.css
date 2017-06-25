@@ -4913,7 +4913,7 @@ h3 {
 }
 
 /* line 30, ../sass/common/_theme.scss */
-p, span, a, li {
+p, span, a, li, label {
   font-family: "opensans", sans-serif;
   font-weight: 300;
   font-size: 12px;
@@ -4988,8 +4988,8 @@ body > header.offline nav ul.auth {
 
 /* line 47, ../sass/components/_header.scss */
 body > header.online {
-  width: 80%;
-  max-width: calc(100% - 250px);
+  width: 85%;
+  max-width: calc(100% - 200px);
   float: right;
   background-color: #363636;
   height: 50px;
@@ -5000,23 +5000,25 @@ body > header.online {
 
 /* line 1, ../sass/components/_sidebar.scss */
 body > aside {
-  width: 20%;
-  height: calc(100% - 30px);
-  min-width: 250px;
+  float: left;
+  width: 15%;
+  box-sizing: border-box;
+  height: 100%;
+  min-width: 200px;
   background-color: #262626;
   padding-top: 30px;
 }
-/* line 7, ../sass/components/_sidebar.scss */
+/* line 9, ../sass/components/_sidebar.scss */
 body > aside .logo {
   width: 30%;
   display: block;
   margin: auto;
 }
-/* line 12, ../sass/components/_sidebar.scss */
+/* line 14, ../sass/components/_sidebar.scss */
 body > aside ul {
   margin-top: 40px;
 }
-/* line 14, ../sass/components/_sidebar.scss */
+/* line 16, ../sass/components/_sidebar.scss */
 body > aside ul li {
   color: white;
   height: 50px;
@@ -5029,7 +5031,7 @@ body > aside ul li {
   -webkit-transition: all 300ms ease;
   transition: all 300ms ease;
 }
-/* line 22, ../sass/components/_sidebar.scss */
+/* line 24, ../sass/components/_sidebar.scss */
 body > aside ul li a {
   display: block;
   width: 100%;
@@ -5039,18 +5041,18 @@ body > aside ul li a {
   color: white;
   font-size: 15px;
 }
-/* line 31, ../sass/components/_sidebar.scss */
+/* line 33, ../sass/components/_sidebar.scss */
 body > aside ul li i {
   position: absolute;
   left: 20px;
   top: calc(50% - 12.5px);
   font-size: 22px !important;
 }
-/* line 37, ../sass/components/_sidebar.scss */
+/* line 39, ../sass/components/_sidebar.scss */
 body > aside ul li i.fa-balance-scale {
   left: 16px;
 }
-/* line 41, ../sass/components/_sidebar.scss */
+/* line 43, ../sass/components/_sidebar.scss */
 body > aside ul li:hover {
   background-color: #363636;
   -moz-transition: all 300ms ease;
@@ -5058,7 +5060,7 @@ body > aside ul li:hover {
   -webkit-transition: all 300ms ease;
   transition: all 300ms ease;
 }
-/* line 45, ../sass/components/_sidebar.scss */
+/* line 47, ../sass/components/_sidebar.scss */
 body > aside ul li.active {
   background-color: #00ADEF;
 }
@@ -5066,12 +5068,22 @@ body > aside ul li.active {
 /* line 1, ../sass/components/_footer.scss */
 body > footer {
   height: 40px;
-  width: 100%;
-  max-width: 100%;
   line-height: 40px;
   background-color: #363636;
   color: white;
   text-align: center;
+}
+
+/* line 9, ../sass/components/_footer.scss */
+body > footer.offline {
+  width: 100%;
+}
+
+/* line 13, ../sass/components/_footer.scss */
+body > footer.online {
+  width: 85%;
+  max-width: calc(100% - 200px);
+  right: 0px;
 }
 
 /* line 1, ../sass/components/_form.scss */
@@ -5092,19 +5104,18 @@ form > div {
 form > div label {
   display: inline-block;
   background-color: #F3F3F3;
-  width: 45px;
   height: 100%;
   text-align: center;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-/* line 19, ../sass/components/_form.scss */
+/* line 18, ../sass/components/_form.scss */
 form > div label i {
   line-height: 35px !important;
   font-size: 20px !important;
   color: #00ADEF;
 }
-/* line 25, ../sass/components/_form.scss */
+/* line 24, ../sass/components/_form.scss */
 form > div input[type="text"], form > div input[type="password"], form > div textarea {
   height: 100%;
   font-size: 13px;
@@ -5114,42 +5125,58 @@ form > div input[type="text"], form > div input[type="password"], form > div tex
   border: 0px;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
-  width: calc(100% - 45px);
   padding-left: 10px;
 }
-/* line 38, ../sass/components/_form.scss */
+/* line 37, ../sass/components/_form.scss */
+form > div.icon label {
+  width: 45px;
+}
+/* line 40, ../sass/components/_form.scss */
+form > div.icon input[type="text"], form > div.icon input[type="password"], form > div.icon textarea {
+  width: calc(100% - 45px);
+}
+/* line 45, ../sass/components/_form.scss */
+form > div.text label {
+  width: 120px;
+  line-height: 35px;
+}
+/* line 49, ../sass/components/_form.scss */
+form > div.text input[type="text"], form > div.text input[type="password"], form > div.text textarea {
+  width: calc(100% - 120px);
+}
+/* line 53, ../sass/components/_form.scss */
 form > div.textarea {
   height: 120px;
 }
-/* line 40, ../sass/components/_form.scss */
+/* line 55, ../sass/components/_form.scss */
 form > div.textarea i {
   line-height: 120px !important;
 }
-/* line 43, ../sass/components/_form.scss */
+/* line 58, ../sass/components/_form.scss */
 form > div.textarea textarea {
   padding-top: 8px;
   resize: none;
 }
-/* line 48, ../sass/components/_form.scss */
+/* line 63, ../sass/components/_form.scss */
 form > a {
   color: #00ADEF;
   text-decoration: underline;
   margin-bottom: 20px;
   display: block;
 }
-/* line 57, ../sass/components/_form.scss */
+/* line 69, ../sass/components/_form.scss */
 form textarea:focus, form input:focus {
   outline: 0 none;
 }
 
-/* line 61, ../sass/components/_form.scss */
+/* line 73, ../sass/components/_form.scss */
 ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
   color: #B5B5B5;
   font-size: 13px;
 }
 
-/* line 65, ../sass/components/_form.scss */
+/* line 77, ../sass/components/_form.scss */
 :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #B5B5B5;
@@ -5157,7 +5184,7 @@ form textarea:focus, form input:focus {
   font-size: 13px;
 }
 
-/* line 70, ../sass/components/_form.scss */
+/* line 82, ../sass/components/_form.scss */
 ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #B5B5B5;
@@ -5165,14 +5192,14 @@ form textarea:focus, form input:focus {
   font-size: 13px;
 }
 
-/* line 75, ../sass/components/_form.scss */
+/* line 87, ../sass/components/_form.scss */
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #B5B5B5;
   font-size: 13px;
 }
 
-/* line 79, ../sass/components/_form.scss */
+/* line 91, ../sass/components/_form.scss */
 ::-ms-input-placeholder {
   /* Microsoft Edge */
   color: #B5B5B5;
@@ -5408,19 +5435,20 @@ input[type="submit"]:hover.danger, button:hover.danger {
 #home {
   padding-top: 0px;
   position: relative;
+  padding-bottom: 0px;
 }
-/* line 4, ../sass/templates/_home.scss */
+/* line 5, ../sass/templates/_home.scss */
 #home #particles-js {
   width: 100%;
-  height: calc(100% - 50px);
+  height: calc(100% - 50px - 40px);
   background-color: #212121;
   background-image: url("");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
 }
-/* line 13, ../sass/templates/_home.scss */
-#home section.welcome {
+/* line 14, ../sass/templates/_home.scss */
+#home .welcome {
   position: absolute;
   box-sizing: border-box;
   width: 480px;
@@ -5435,45 +5463,52 @@ input[type="submit"]:hover.danger, button:hover.danger {
   color: white;
   border-radius: 3px;
 }
-/* line 27, ../sass/templates/_home.scss */
-#home section.welcome h3 {
+/* line 28, ../sass/templates/_home.scss */
+#home .welcome h3 {
   margin-bottom: 10px;
 }
-/* line 30, ../sass/templates/_home.scss */
-#home section.welcome p {
+/* line 31, ../sass/templates/_home.scss */
+#home .welcome p {
   font-size: 13px;
   display: block;
   margin: auto;
   line-height: 22px;
   width: 80%;
 }
-/* line 37, ../sass/templates/_home.scss */
-#home section.welcome strong {
+/* line 38, ../sass/templates/_home.scss */
+#home .welcome strong {
   font-weight: 600 !important;
 }
-/* line 40, ../sass/templates/_home.scss */
-#home section.welcome .buttons {
+/* line 41, ../sass/templates/_home.scss */
+#home .welcome .buttons {
   margin-top: 35px;
 }
-/* line 42, ../sass/templates/_home.scss */
-#home section.welcome .buttons a {
+/* line 43, ../sass/templates/_home.scss */
+#home .welcome .buttons a {
   width: 40%;
 }
-/* line 44, ../sass/templates/_home.scss */
-#home section.welcome .buttons a i {
+/* line 45, ../sass/templates/_home.scss */
+#home .welcome .buttons a i {
   position: relative;
   right: 15px;
 }
-/* line 50, ../sass/templates/_home.scss */
-#home section.welcome .buttons a:first-child {
+/* line 51, ../sass/templates/_home.scss */
+#home .welcome .buttons a:first-child {
   margin-right: 20px;
 }
-/* line 52, ../sass/templates/_home.scss */
-#home section.welcome .buttons a:first-child i {
-  font-size: 21px !important;
+/* line 53, ../sass/templates/_home.scss */
+#home .welcome .buttons a:first-child i {
+  font-size: 22px !important;
   top: 3px;
 }
-/* line 57, ../sass/templates/_home.scss */
-#home section.welcome .buttons a:last-child i {
+/* line 58, ../sass/templates/_home.scss */
+#home .welcome .buttons a:last-child i {
   font-size: 18px !important;
+}
+
+/* line 1, ../sass/templates/_profile.scss */
+#profile {
+  float: right;
+  width: 85%;
+  max-width: calc(100% - 200px);
 }

@@ -7,4 +7,5 @@ $(function(){
     microseo.ui.popup();
     microseo.ui.form();
     microseo.ui.particules();
+    microseo.ui.welcome();
 });

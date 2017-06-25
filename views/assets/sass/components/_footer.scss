@@ -1,9 +1,17 @@
 body > footer {
     height: 40px;
-    width: 100%;
-    max-width: 100%;
     line-height: 40px;
     background-color: #363636;
     color: white;
     text-align: center;
+}
+
+body > footer.offline {
+    width: 100%;
+}
+
+body > footer.online {
+    width: 85%;
+    max-width: calc(100% - 200px);
+    right: 0px;
 }

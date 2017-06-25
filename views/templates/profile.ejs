@@ -1,13 +1,82 @@
-<main>
-    <p>Firstname: <%= user.firstname %></p>
-    <p>Lastname: <%= user.lastname %></p>
-    <p>Email: <%= user.email %></p>
-    <p>Password: <%= user.password %></p>
-    <p>Subscription: <%= user.subscription %></p>
-    <p>Birth: <%= user.dob %></p>
-    <p>Country: <%= user.country %></p>
-    <p>City: <%= user.city %></p>
-    <p>ZIP: <%= user.zip %></p>
-    <p>Adress: <%= user.adress %></p>
-    <p>Additional adress: <%= user.additional_adress %></p>
+<main id="profile">    
+    <form id="profile_form" action="/login" method="post">
+        <div class="text">  
+            <label for="profile-firstname">
+                Firstname
+            </label>
+            <input type="text" name="firstname" id="profile-firstname" value="<%= user.firstname %>">
+        </div>
+        
+        <div class="text">  
+            <label for="profile-lastname">
+                Lastname
+            </label>
+            <input type="text" name="firstname" id="profile-lastname" value="<%= user.lastname %>">
+        </div>
+        
+        <div class="text">  
+            <label for="profile-email">
+                Email
+            </label>
+            <input type="text" name="firstname" id="profile-email" value="<%= user.email %>">
+        </div>
+        
+        <div class="text">  
+            <label for="profile-password">
+                Password
+            </label>
+            <input type="text" name="firstname" id="profile-password">
+        </div>
+        
+        <div class="text">  
+            <label for="profile-confirm">
+                Confirm Password
+            </label>
+            <input type="text" name="firstname" id="profile-confirm">
+        </div>
+        
+        <div class="text">  
+            <label for="profile-subscription">
+                Subscription
+            </label>
+            <input type="text" name="firstname" id="profile-subscription" value="<%= user.subscription %>">
+        </div>
+        
+        <div class="text">  
+            <label for="profile-birth">
+                Birth
+            </label>
+            <input type="text" name="firstname" id="profile-birth" value="<%= user.birth %>">
+        </div>
+        
+        <div class="text">  
+            <label for="profile-country">
+                Country
+            </label>
+            <input type="text" name="firstname" id="profile-country" value="<%= user.country %>">
+        </div>
+        
+        <div class="text">  
+            <label for="profile-zip">
+                ZIP
+            </label>
+            <input type="text" name="firstname" id="profile-zip" value="<%= user.zip%>">
+        </div>
+        
+        <div class="text">  
+            <label for="profile-adress">
+                Adress
+            </label>
+            <input type="text" name="firstname" id="profile-adress" value="<%= user.adress %>">
+        </div>
+        
+        <div class="text">  
+            <label for="profile-additional_adress">
+                Additional Adress
+            </label>
+            <input type="text" name="firstname" id="profile-additional_adress" value="<%= user.additional_adress %>">
+        </div>
+        
+        <input class="sm-btn" type="submit">
+    </form>
 </main>

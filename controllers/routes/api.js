@@ -145,7 +145,6 @@ module.exports = function(app) {
             });
         }
         app.controllers.security.auth(req.body.email, req.body.password, function(err, user) {
-            console.log(err);
             if(err) {
                 var msg;
                 if(err === 'no account' || err === 'bad password') msg = "Wrong email or password..";

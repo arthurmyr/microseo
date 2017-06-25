@@ -219,12 +219,6 @@ $(function(){
                   .css('bottom', '0px');
         }
         
-        if($('header.online').length) {
-            footer.css('right', '0px')
-                  .css('width', '80%')
-                  .css('max-width', windowWidth - 250);
-        }
-        
         $(window).resize(function(){
             setTimeout(function() {  
                 microseo.ui.footer();
@@ -233,6 +227,7 @@ $(function(){
     }
     
     microseo.ui.particules = function() {
+        if(window.location.pathname !== '/') return;
         particlesJS("particles-js", {
             "particles": {
                 "number": {
@@ -343,5 +338,18 @@ $(function(){
             },
             "retina_detect": true
         });
+    }
+    
+    microseo.ui.welcome = function() {
+        if(window.location.pathname !== "/") return;
+        var blockHeight = $('.welcome').outerHeight();
+        var windowHeight = $(window).outerHeight();
+        $('.welcome').css('top', (windowHeight / 2) - (blockHeight / 2));
+        
+        $(window).resize(function(){
+            setTimeout(function() {  
+                microseo.ui.welcome();
+            }, 500);
+        })
     }
 });
