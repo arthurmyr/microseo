@@ -1,0 +1,66 @@
+#audit {
+    padding-top: 0;
+    padding-bottom: 0;
+    position: relative;
+    height: calc(100% - 50px - 60px);
+    .background {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+//        height: calc(100% - 50px);
+        height: 110%;
+        background-image: url('/img/sky.jpg');
+        background-repeat: no-repeat;
+        background-size: auto;
+        background-position: center center;
+        z-index: -1;
+    }
+    form {
+        #auditbar {
+            border: 0;
+            background: white;
+            width: 60%;
+            height: 35px;
+            position: absolute;
+            top: calc(50% - 17.5px);
+            left: 20%;
+            border-radius: $form-radius;
+            label {
+                width: 45px;
+                display: inline-block;
+                background-color: $label-color;
+                height: 100%;
+                text-align: center;
+                border-top-left-radius: $form-radius;
+                border-bottom-left-radius: $form-radius;
+            }
+            input {
+                font-size: 14px;
+                box-sizing: border-box;
+                padding-left: 10px;
+                padding-right: 10px;
+                display: inline-block;
+                height: 35px;
+                border: 0px;
+                width: calc(100% - 45px - 80px);
+                float: inherit;
+                vertical-align: top;
+                border-radius: 0;
+            }
+            button {
+                font-size: 14px;
+                width: 70px;
+                float: right;
+                height: 35px;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+            i {
+                line-height: $input-height !important;
+                font-size: $label-icon-size !important;
+                color: $label-icon-color;
+            }
+        }
+    }
+}    

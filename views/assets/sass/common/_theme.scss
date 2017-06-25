@@ -40,3 +40,9 @@ body > main {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
+#dashboard, #audit, #comparator, #history, #profile {
+    float: right;
+    width: 85%;
+    max-width: calc(100% - 200px);
+}

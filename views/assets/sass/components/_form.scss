@@ -43,11 +43,12 @@ form {
     }
     > div.text {
         label {
-            width: 120px;
+            width: 140px;
             line-height: $input-height;
+            font-weight: 600;
         }
         input[type="text"], input[type="password"], textarea {
-            width: calc(100% - 120px);
+            width: calc(100% - 140px);
         }
     }
     > div.textarea {
@@ -66,10 +67,10 @@ form {
         margin-bottom: 20px;
         display: block;
     }
+}
     textarea:focus, input:focus {
         outline: 0 none;
     }
-}
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color: $placeholder-color;
     font-size: $placeholder-size;

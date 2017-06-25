@@ -214,9 +214,13 @@ $(function(){
         var contentHeight = $('body > main').outerHeight();
         var footer = $('body > footer');
         
+        console.log(contentHeight);
+        console.log((windowHeight - headerHeight - footerHeight));
         if(contentHeight < (windowHeight - headerHeight - footerHeight)) {
+        console.log(true);
             footer.css('position', 'absolute')
-                  .css('bottom', '0px');
+                  .css('bottom', '0px')
+                  .css('z-index', 10);
         }
         
         $(window).resize(function(){
@@ -344,12 +348,16 @@ $(function(){
         if(window.location.pathname !== "/") return;
         var blockHeight = $('.welcome').outerHeight();
         var windowHeight = $(window).outerHeight();
-        $('.welcome').css('top', (windowHeight / 2) - (blockHeight / 2));
+        $('.welcome').css('top', (windowHeight / 2) - (blockHeight / 2) - 50);
         
         $(window).resize(function(){
             setTimeout(function() {  
                 microseo.ui.welcome();
             }, 500);
         })
+    }
+    
+    microseo.ui.audit = function() {
+        
     }
 });

@@ -4931,6 +4931,13 @@ body > main {
   padding-bottom: 20px;
 }
 
+/* line 44, ../sass/common/_theme.scss */
+#dashboard, #audit, #comparator, #history, #profile {
+  float: right;
+  width: 85%;
+  max-width: calc(100% - 200px);
+}
+
 /* line 1, ../sass/components/_header.scss */
 body > header.offline {
   background-color: #363636;
@@ -5000,6 +5007,7 @@ body > header.online {
 
 /* line 1, ../sass/components/_sidebar.scss */
 body > aside {
+  position: fixed;
   float: left;
   width: 15%;
   box-sizing: border-box;
@@ -5008,17 +5016,17 @@ body > aside {
   background-color: #262626;
   padding-top: 30px;
 }
-/* line 9, ../sass/components/_sidebar.scss */
+/* line 10, ../sass/components/_sidebar.scss */
 body > aside .logo {
   width: 30%;
   display: block;
   margin: auto;
 }
-/* line 14, ../sass/components/_sidebar.scss */
+/* line 15, ../sass/components/_sidebar.scss */
 body > aside ul {
   margin-top: 40px;
 }
-/* line 16, ../sass/components/_sidebar.scss */
+/* line 17, ../sass/components/_sidebar.scss */
 body > aside ul li {
   color: white;
   height: 50px;
@@ -5031,7 +5039,7 @@ body > aside ul li {
   -webkit-transition: all 300ms ease;
   transition: all 300ms ease;
 }
-/* line 24, ../sass/components/_sidebar.scss */
+/* line 25, ../sass/components/_sidebar.scss */
 body > aside ul li a {
   display: block;
   width: 100%;
@@ -5041,18 +5049,18 @@ body > aside ul li a {
   color: white;
   font-size: 15px;
 }
-/* line 33, ../sass/components/_sidebar.scss */
+/* line 34, ../sass/components/_sidebar.scss */
 body > aside ul li i {
   position: absolute;
   left: 20px;
   top: calc(50% - 12.5px);
   font-size: 22px !important;
 }
-/* line 39, ../sass/components/_sidebar.scss */
+/* line 40, ../sass/components/_sidebar.scss */
 body > aside ul li i.fa-balance-scale {
   left: 16px;
 }
-/* line 43, ../sass/components/_sidebar.scss */
+/* line 44, ../sass/components/_sidebar.scss */
 body > aside ul li:hover {
   background-color: #363636;
   -moz-transition: all 300ms ease;
@@ -5060,7 +5068,7 @@ body > aside ul li:hover {
   -webkit-transition: all 300ms ease;
   transition: all 300ms ease;
 }
-/* line 47, ../sass/components/_sidebar.scss */
+/* line 48, ../sass/components/_sidebar.scss */
 body > aside ul li.active {
   background-color: #00ADEF;
 }
@@ -5137,46 +5145,48 @@ form > div.icon input[type="text"], form > div.icon input[type="password"], form
 }
 /* line 45, ../sass/components/_form.scss */
 form > div.text label {
-  width: 120px;
+  width: 140px;
   line-height: 35px;
+  font-weight: 600;
 }
-/* line 49, ../sass/components/_form.scss */
+/* line 50, ../sass/components/_form.scss */
 form > div.text input[type="text"], form > div.text input[type="password"], form > div.text textarea {
-  width: calc(100% - 120px);
+  width: calc(100% - 140px);
 }
-/* line 53, ../sass/components/_form.scss */
+/* line 54, ../sass/components/_form.scss */
 form > div.textarea {
   height: 120px;
 }
-/* line 55, ../sass/components/_form.scss */
+/* line 56, ../sass/components/_form.scss */
 form > div.textarea i {
   line-height: 120px !important;
 }
-/* line 58, ../sass/components/_form.scss */
+/* line 59, ../sass/components/_form.scss */
 form > div.textarea textarea {
   padding-top: 8px;
   resize: none;
 }
-/* line 63, ../sass/components/_form.scss */
+/* line 64, ../sass/components/_form.scss */
 form > a {
   color: #00ADEF;
   text-decoration: underline;
   margin-bottom: 20px;
   display: block;
 }
-/* line 69, ../sass/components/_form.scss */
-form textarea:focus, form input:focus {
+
+/* line 71, ../sass/components/_form.scss */
+textarea:focus, input:focus {
   outline: 0 none;
 }
 
-/* line 73, ../sass/components/_form.scss */
+/* line 74, ../sass/components/_form.scss */
 ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
   color: #B5B5B5;
   font-size: 13px;
 }
 
-/* line 77, ../sass/components/_form.scss */
+/* line 78, ../sass/components/_form.scss */
 :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #B5B5B5;
@@ -5184,7 +5194,7 @@ form textarea:focus, form input:focus {
   font-size: 13px;
 }
 
-/* line 82, ../sass/components/_form.scss */
+/* line 83, ../sass/components/_form.scss */
 ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #B5B5B5;
@@ -5192,14 +5202,14 @@ form textarea:focus, form input:focus {
   font-size: 13px;
 }
 
-/* line 87, ../sass/components/_form.scss */
+/* line 88, ../sass/components/_form.scss */
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #B5B5B5;
   font-size: 13px;
 }
 
-/* line 91, ../sass/components/_form.scss */
+/* line 92, ../sass/components/_form.scss */
 ::-ms-input-placeholder {
   /* Microsoft Edge */
   color: #B5B5B5;
@@ -5506,9 +5516,73 @@ input[type="submit"]:hover.danger, button:hover.danger {
   font-size: 18px !important;
 }
 
-/* line 1, ../sass/templates/_profile.scss */
-#profile {
+/* line 1, ../sass/templates/_audit.scss */
+#audit {
+  padding-top: 0;
+  padding-bottom: 0;
+  position: relative;
+  height: calc(100% - 50px - 60px);
+}
+/* line 6, ../sass/templates/_audit.scss */
+#audit .background {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 110%;
+  background-image: url("/img/sky.jpg");
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center center;
+  z-index: -1;
+}
+/* line 20, ../sass/templates/_audit.scss */
+#audit form #auditbar {
+  border: 0;
+  background: white;
+  width: 60%;
+  height: 35px;
+  position: absolute;
+  top: calc(50% - 17.5px);
+  left: 20%;
+  border-radius: 3px;
+}
+/* line 29, ../sass/templates/_audit.scss */
+#audit form #auditbar label {
+  width: 45px;
+  display: inline-block;
+  background-color: #F3F3F3;
+  height: 100%;
+  text-align: center;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+/* line 38, ../sass/templates/_audit.scss */
+#audit form #auditbar input {
+  font-size: 14px;
+  box-sizing: border-box;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: inline-block;
+  height: 35px;
+  border: 0px;
+  width: calc(100% - 45px - 80px);
+  float: inherit;
+  vertical-align: top;
+  border-radius: 0;
+}
+/* line 51, ../sass/templates/_audit.scss */
+#audit form #auditbar button {
+  font-size: 14px;
+  width: 70px;
   float: right;
-  width: 85%;
-  max-width: calc(100% - 200px);
+  height: 35px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+/* line 59, ../sass/templates/_audit.scss */
+#audit form #auditbar i {
+  line-height: 35px !important;
+  font-size: 20px !important;
+  color: #00ADEF;
 }
