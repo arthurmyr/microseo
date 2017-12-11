@@ -1,19 +1,20 @@
 var express = require('express'),
     path = require('path'),
     bodyParser = require('body-parser'),
-    session = require('express-session');
+    session = require('express-session'),
+    appDir = path.dirname(require.main.filename);
 
 module.exports = function(app) {
     var server = app.drivers.express.server,
         mysql = app.drivers.mysql,
         security = app.controllers.security,
         analyze = app.controllers.analyze,
-        templateModel = path.resolve('views/templates/model.ejs');
-    
+        templateModel = appDir+'/views/templates/model.ejs';
+
     ///////////////////
     // Static Routes //
     ///////////////////
-    
+
     server
     .get('/', function(req, res){
         res.render(templateModel, {
@@ -61,12 +62,12 @@ module.exports = function(app) {
         req.session.destroy();
         return res.redirect('/login');
     })
-    
-    
+
+
     ////////////////////
     // Dynamic Routes //
     ////////////////////
-    
+
     .post('/login', function(req, res) {
         security.auth(req.body.email, req.body.password, function(err, user) {
             if(err) {
@@ -92,7 +93,7 @@ module.exports = function(app) {
             });
             userUpdate.update(function(err, rows) {
                 if(err) return res.redirect('/login?confirm=false');
-                
+
                 token = app.drivers.crypto.encrypt({
                     id : userData.id,
                     email : userData.email
@@ -101,7 +102,7 @@ module.exports = function(app) {
                 req.session.token = token;
                 return res.redirect('/dashboard?confirm=true');
             })
-            
+
         });
     })
     .get('/profile', function(req, res) {
@@ -109,13 +110,13 @@ module.exports = function(app) {
             req.session.destroy();
             return res.redirect('/login');
         }
-        
+
         var grant = security.grant(req.session.user, req.session.token);
         if(!grant) {
             req.session.destroy();
             return res.redirect('/login');
         }
-        
+
         var user = new app.models.user(app, {
             id: req.session.user
         });
@@ -127,7 +128,7 @@ module.exports = function(app) {
                 logged: true,
                 user: rows[0]
             });
-        }) 
+        })
     })
     .get('/dashboard', function(req, res) {
         if(!req.session.token || !req.session.user) {
@@ -139,7 +140,7 @@ module.exports = function(app) {
             req.session.destroy();
             return res.redirect('/login');
         }
-        
+
         res.render(templateModel, {
             page: 'dashboard',
             pageTitle: 'Dashboard | MicroSeo',
@@ -157,7 +158,7 @@ module.exports = function(app) {
             req.session.destroy();
             return res.redirect('/login');
         }
-        
+
         res.render(templateModel, {
             page: 'audit',
             pageTitle: 'Audit | MicroSeo',
@@ -175,7 +176,7 @@ module.exports = function(app) {
             req.session.destroy();
             return res.redirect('/login');
         }
-        
+
         analyze.init(req.body.url, function(results) {
             return res.render(templateModel, {
                 page: 'audit-result',
@@ -196,7 +197,7 @@ module.exports = function(app) {
             req.session.destroy();
             return res.redirect('/login');
         }
-        
+
         res.render(templateModel, {
             page: 'comparator',
             pageTitle: 'Comparator | MicroSeo',
@@ -214,7 +215,7 @@ module.exports = function(app) {
             req.session.destroy();
             return res.redirect('/login');
         }
-        
+
         res.render(templateModel, {
             page: 'history',
             pageTitle: 'History | MicroSeo',

@@ -1,14 +1,15 @@
 var express = require('express'),
     path = require('path'),
     bodyParser = require('body-parser'),
-    session = require('express-session');
+    session = require('express-session'),
+    appDir = path.dirname(require.main.filename);
 
 module.exports = function(app) {
     var server = app.drivers.express.server,
         mysql = app.drivers.mysql,
-        templateModel = path.resolve('views/templates/model.ejs'),
+        templateModel = appDir+'/views/templates/model.ejs',
         crawler = app.controllers.crawler;
-    
+
     server
     .get('/api/user', function(req, res) {
         var user = new app.models.user(app, {
@@ -19,7 +20,7 @@ module.exports = function(app) {
                 return res.status(500).send({
                     status: 'error',
                     error: err
-                }); 
+                });
             }
             else if (!rows) {
                 return res.status(404).send({
@@ -36,7 +37,7 @@ module.exports = function(app) {
     .post('/api/user', function(req, res) {
         var token = app.drivers.crypto.encrypt({
             email: req.body.email
-        });   
+        });
         token = encodeURIComponent(token);
         var html = app.controllers.mailer.generateTemplate({
             type: 'confirmMail',
@@ -48,7 +49,7 @@ module.exports = function(app) {
             html: html
         }
         app.controllers.mailer.send(mailOptions, function(err, info) {
-            if(err) {    
+            if(err) {
                 return res.status(500).send({
                     status: 'error',
                     error: err,
@@ -67,7 +68,7 @@ module.exports = function(app) {
                         status: 'error',
                         error: err,
                         message: "The account can't be created for an unknown reason. Please contact an administrator."
-                    }); 
+                    });
                 }
                 return res.status(201).send({
                     status: 'success',
@@ -104,7 +105,7 @@ module.exports = function(app) {
             }
         }
         // End //
-        
+
         var user = new app.models.user(app, req.body);
         user.update(function(err, rows, fields) {
             if(err) {
@@ -121,7 +122,7 @@ module.exports = function(app) {
     })
     .delete('/api/user', function(req, res) {
         var user = new app.models.user(app, {
-           id: req.body.id 
+           id: req.body.id
         });
         user.delete(function(err, rows, fields) {
             if(err) {
@@ -164,16 +165,16 @@ module.exports = function(app) {
         });
     })
     .get('/api/audit', function(req, res) {
-        
+
     })
     .post('/api/audit', function(req, res) {
-        
+
     })
     .put('/api/audit', function(req, res) {
-        
+
     })
     .delete('/api/audit', function(req, res) {
-        
+
     })
     .post('/api/service/analyze', function(req, res) {
         app.controllers.analyze.init(req.body.url, function(results) {
